@@ -1,0 +1,26 @@
+.app {
+  display: flex;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  font-size: 16px;
+}
+
+app-tools-panel {
+  z-index: 1000;
+}
+
+app-map {
+  flex: 1;
+  height: 100%;
+  transition: width 0.3s ease;
+    flex: 1;
+  transition: width 0.3s;
+}
+
+app-map.full-width {
+  width: 100vw;
+}

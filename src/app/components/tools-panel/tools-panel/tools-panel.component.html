@@ -1,0 +1,10 @@
+<div class="tools-panel" [ngClass]="{'closed': !isSidebarOpen}">
+<div class="tools-container">
+<app-header (toggleSidebar)="toggleSidebar()"></app-header>
+<app-content></app-content>
+<app-footer></app-footer>
+</div>
+</div>
+<div class="sidebar-toggle-icon" *ngIf="!isSidebarOpen" (click)="toggleSidebar()">
+  <i class="fas fa-bars"></i>
+</div>

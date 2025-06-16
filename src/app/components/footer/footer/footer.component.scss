@@ -1,0 +1,71 @@
+.tools-footer {
+    font-size: 12px;
+    color: #fff;
+}
+.tools-footer .footer-info .credentials {
+    display: flex
+;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 52px;
+    padding: 0 20px;
+    background-color: #0a4393;
+    color: #fff;
+}
+.tools-footer .footer-info .credentials .banners {
+    display: inherit
+;
+    align-items: center;
+    gap: 24px;
+}
+.tools-footer .footer-info .credentials .banners .europe-banner {
+    display: inherit
+;
+    border: 1px solid #fff;
+}
+.tools-footer .footer-info .credentials .banners .copernicus-banner {
+    display: inherit
+;
+}
+.tools-footer .footer-info .credentials .banners .esa-banner {
+    display: inherit
+;
+    padding-top: 2px;
+}
+.tools-footer .footer-info .credentials .links {
+    display: inherit
+;
+    align-items: center;
+    gap: 20px;
+}
+.tools-footer .footer-info .credentials .links .about-container, .tools-footer .footer-info .credentials .links .support-container {
+    align-items: center;
+    gap: 5px;
+    text-align: center;
+}
+.tools-footer .footer-info .credentials .links .about-container .about, .tools-footer .footer-info .credentials .links .about-container .support, .tools-footer .footer-info .credentials .links .support-container .about, .tools-footer .footer-info .credentials .links .support-container .support {
+    color: #fff;
+    font-size: 13px;
+    font-weight: 400;
+}
+ .tools-footer .footer-info .credentials .links .support-container {
+    align-items: center;
+    gap: 5px;
+    text-align: center;
+}
+.tools-footer .footer-info .credentials .links .support-container .support {
+    color: #fff;
+    font-size: 13px;
+    font-weight: 400;
+}
+.tools-footer .footer-info .credentials .app-version {
+    position: absolute;
+    // bottom: -10px;
+    right: 5px;
+    font-family: Arial, Cabin, Tahoma, Verdana, Helvetica Neue, sans-serif;
+    font-size: 8px;
+    color: #fff;
+    font-weight: 400;
+    text-align: right;
+        margin-top: 40px;
+}
