@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 interface Collection {
   label: string;
   isToggleDisabled: boolean;
@@ -23,7 +24,7 @@ interface CollectionButton {
 }
 @Component({
   selector: 'app-content',
-  imports: [CommonModule],
+  imports: [CommonModule,FormsModule],
   templateUrl: './content.component.html',
   styleUrl: './content.component.scss'
 })
@@ -31,6 +32,14 @@ export class ContentComponent {
 activeTab: string = 'visualize'; 
   searchQuery: string = '';
   isDatePanelExpanded: boolean = true;
+    isThemePanelExpanded: boolean = true;
+      isCollectionPanelExpanded: boolean = true;
+
+        themes = ['Default', 'Dark', 'Light'];
+  selectedTheme: string = 'Default';
+satellites = ['Sentinel-1', 'Sentinel-2', 'Landsat-8'];
+  selectedSatellite: string = 'Sentinel-1'; 
+
 collections: Collection[] = [
     { label: 'SENTINEL-1', isToggleDisabled: false },
     { label: 'SENTINEL-2', isToggleDisabled: false },
@@ -116,4 +125,17 @@ collections: Collection[] = [
 
   toggleDatePanel(): void {
     this.isDatePanelExpanded = !this.isDatePanelExpanded;
-  }}
+  }
+  toggleThemePanel() {
+    this.isThemePanelExpanded = !this.isThemePanelExpanded;
+  }
+    toggleCollectionPanel() {
+    this.isCollectionPanelExpanded = !this.isCollectionPanelExpanded;
+  }
+    getCollapsedTitle(): string {
+    const collection = 'Sentinel-1'; 
+    const selectedPols = this.polarizations.filter(p => p.isSelected).map(p => p.text);
+    const polarization = selectedPols.length > 0 ? selectedPols.join('+') : '';
+    return polarization ? `${collection} ${polarization}` : collection;
+  }
+}

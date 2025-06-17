@@ -338,7 +338,7 @@ body input,
     .theme-select-highlights-wrapper {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        // justify-content: space-between;
         align-items: flex-end;
 
         .theme-label-select-wrapper {
@@ -1125,3 +1125,4 @@ html input, body input, #root input, #app input, #map input {
     fill: #fff;
     transform: rotate(-45deg);
 }
+
