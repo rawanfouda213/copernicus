@@ -268,7 +268,7 @@
                                 </div>
                             </div>
                         </div> -->
-                        <div class="observation-scenarios-wrapper">
+                         <div class="observation-scenarios-wrapper">
                             <div class="observation-scenarios-label">Acquisition mode:
                                 <div class="collection-tooltip undefined closed" style="position: relative;">
                                     <div class="collection-tooltip-icon">
@@ -280,7 +280,7 @@
                                 <div class="acquisition-mode-container">
                                     <div *ngFor="let mode of acquisitionModes">
                                         <div class="s1-single-collection-wrapper">
-                                            <a class="eob-btn s1-collection-button secondary" [ngClass]="{'selected': mode.isSelected}" [attr.title]="mode.title">
+                                            <a class="eob-btn s1-collection-button secondary" [ngClass]="{'selected': mode.isSelected}" (click)="selectSingleItem(mode, acquisitionModes)" [attr.title]="mode.title">
                                                 {{ mode.text }}
                                                 <svg *ngIf="mode.isSelected" width="13" height="14" viewBox="0 0 13 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M1 6.67742L4.55882 12L12 1" stroke="#B6BF00" stroke-width="2"></path>
@@ -296,40 +296,32 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div *ngFor="let polarization of polarizations" class="s1-single-collection-wrapper">
-                                            <a class="eob-btn s1-collection-button secondary" [ngClass]="{'selected': polarization.isSelected}" [attr.title]="polarization.title">
-                                                {{ polarization.text }}
-                                                <svg *ngIf="polarization.isSelected" width="13" height="14" viewBox="0 0 13 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M1 6.67742L4.55882 12L12 1" stroke="#B6BF00" stroke-width="2"></path>
-                                                </svg>
-                                            </a>
+                                        <div *ngFor="let polarization of polarizations">
+                                            <div class="s1-single-collection-wrapper">
+                                                <a class="eob-btn s1-collection-button secondary" [ngClass]="{'selected': polarization.isSelected}" (click)="selectSingleItem(polarization, polarizations)" [attr.title]="polarization.title">
+                                                    {{ polarization.text }}
+                                                    <svg *ngIf="polarization.isSelected" width="13" height="14" viewBox="0 0 13 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M1 6.67742L4.55882 12L12 1" stroke="#B6BF00" stroke-width="2"></path>
+                                                    </svg>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="orbit-direction-container">
-                                <div class="collection-label">Orbit Direction:
+                                <div class="observation-scenarios-label">Orbit Direction:
                                     <div class="collection-tooltip undefined closed" style="position: relative;">
                                         <div class="collection-tooltip-icon">
                                             <i class="fa fa-info"></i>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="collection-buttons-wrapper">
-                                    <div class="single-collection-wrapper">
-                                        <a class="eob-btn collection-button secondary option-toggle selected" title="[object Object]">Ascending
-                                            <div class="react-toggle react-toggle--checked">
-                                                <div class="react-toggle-track">
-                                                    <div class="react-toggle-track-check"></div>
-                                                    <div class="react-toggle-track-x"></div>
-                                                </div>
-                                                <div class="react-toggle-thumb"></div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="single-collection-wrapper">
-                                        <a class="eob-btn collection-button secondary option-toggle selected" title="[object Object]">Descending
-                                            <div class="react-toggle react-toggle--checked">
+                 <div class="collection-buttons-wrapper">
+                                    <div class="single-collection-wrapper" *ngFor="let direction of orbitDirections">
+                                        <a class="eob-btn collection-button secondary option-toggle" [ngClass]="{'selected': direction.isSelected}" (click)="toggleOrbitDirectionIndependent(direction)" [attr.title]="direction.text">
+                                            {{ direction.text }}
+                                            <div class="react-toggle" [ngClass]="{'react-toggle--checked': direction.isSelected}">
                                                 <div class="react-toggle-track">
                                                     <div class="react-toggle-track-check"></div>
                                                     <div class="react-toggle-track-x"></div>

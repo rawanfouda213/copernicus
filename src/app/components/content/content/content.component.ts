@@ -40,6 +40,7 @@ activeTab: string = 'visualize';
 satellites = ['Sentinel-1', 'Sentinel-2', 'Landsat-8'];
   selectedSatellite: string = 'Sentinel-1'; 
 
+
 collections: Collection[] = [
     { label: 'SENTINEL-1', isToggleDisabled: false },
     { label: 'SENTINEL-2', isToggleDisabled: false },
@@ -115,6 +116,11 @@ collections: Collection[] = [
       isSelected: false
     }
   ];
+
+    orbitDirections = [
+    { text: 'Ascending', title: 'Ascending Orbit', isSelected: true },
+    { text: 'Descending', title: 'Descending Orbit', isSelected: false }
+  ];
   setActiveTab(tab: string) {
     this.activeTab = tab;
   }
@@ -137,5 +143,12 @@ collections: Collection[] = [
     const selectedPols = this.polarizations.filter(p => p.isSelected).map(p => p.text);
     const polarization = selectedPols.length > 0 ? selectedPols.join('+') : '';
     return polarization ? `${collection} ${polarization}` : collection;
+  }
+  selectSingleItem(item: any, array: any[]) {
+    array.forEach(i => i.isSelected = false);
+    item.isSelected = true;
+  }
+ toggleOrbitDirectionIndependent(direction: any) {
+    direction.isSelected = !direction.isSelected;
   }
 }
