@@ -1,12 +1,13 @@
 <div class="tabs-container">
 <div class="tabs-wrapper">
 <ul class="tab-list">
-    <li id="visualization-tabButton" value="1" class="tab-selected">Visualise</li>
-    <li id="search-tabButton" value="2" class="">Search</li>
-</ul>
+    <li id="visualization-tabButton" value="1" [ngClass]="{'tab-selected': activeTab === 'visualize'}" (click)="setActiveTab('visualize')">Visualise</li>
+    <li id="search-tabButton" value="2" [ngClass]="{'tab-selected': activeTab === 'search'}" (click)="setActiveTab('search')">Search</li>
+  </ul>
 
 </div>
-<div id="visualization-tab" class="tabPanelContainer">
+ <!-- Visualize Tab Content -->
+<div id="visualization-tab" class="tabPanelContainer" *ngIf="activeTab === 'visualize'">
     <div class="active">
         <div class="visualization-panel">
             <div class="date-selection">
@@ -250,4 +251,243 @@
         </div>
     </div>
 </div>
+ <!-- search Tab Content -->
+ <div id="search-tab" class="tabPanelContainer" *ngIf="activeTab === 'search'">
+<div class="active">
+    <div class="advanced-search-wrapper">
+    <div class="search-panel">
+        <div class="search-criteria-wrapper">
+            <div class="top-label">
+                <div class="data-source-advanced-title">Search criteria:</div>
+                <div><input type="text" placeholder="Product name" value=""></div>
+                <div class="search-criteria-geometry-notice">To apply a location filter, please define an AOI/a POI</div>
+            </div></div><div class="top-label"><div class="data-source-advanced-title">Data sources:</div>
+            <div class="checkbox-group">
+                <div class="column">
+                    <div class="collection-group">
+                        <div class="collection">
+                            <div class="item-wrapper">
+                                <div class="custom-checkbox-container">
+                                    <label class="custom-checkbox-label label-left">
+                                        <div class="custom-checkbox-inner-wrapper" title="">
+                                            <input class="custom-checkbox  " type="checkbox">
+                                        </div>
+                                        <span class="custom-checkbox-text">SENTINEL-1</span>
+                                    </label>
+                                </div>
+                                <div class="additional-filters-toggle button  ">
+                                    <div>Filters</div>
+                                    <svg width="15" height="15" viewBox="0 0 15 15" fill="current" xmlns="http://www.w3.org/2000/svg"><path d="M7.5 15L6.17813 13.6781L11.4094 8.4375H0V6.5625H11.4094L6.17813 1.32187L7.5 0L15 7.5L7.5 15Z" fill="current"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="collection-group">
+                        <div class="collection">
+                            <div class="item-wrapper">
+                                <div class="custom-checkbox-container">
+                                    <label class="custom-checkbox-label label-left">
+                                        <div class="custom-checkbox-inner-wrapper" title="">
+                                            <input class="custom-checkbox  " type="checkbox">
+                                        </div>
+                                        <span class="custom-checkbox-text">SENTINEL-2</span>
+                                    </label>
+                                </div>
+                                <div class="additional-filters-toggle button  ">
+                                    <div>Filters</div>
+                                    <svg width="15" height="15" viewBox="0 0 15 15" fill="current" xmlns="http://www.w3.org/2000/svg"><path d="M7.5 15L6.17813 13.6781L11.4094 8.4375H0V6.5625H11.4094L6.17813 1.32187L7.5 0L15 7.5L7.5 15Z" fill="current"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="collection-group">
+                        <div class="collection">
+                            <div class="item-wrapper">
+                                <div class="custom-checkbox-container">
+                                    <label class="custom-checkbox-label label-left">
+                                        <div class="custom-checkbox-inner-wrapper" title="">
+                                            <input class="custom-checkbox  " type="checkbox">
+                                        </div>
+                                        <span class="custom-checkbox-text">SENTINEL-3</span>
+                                    </label>
+                                </div>
+                                <div class="additional-filters-toggle button  ">
+                                    <div>Filters</div>
+                                    <svg width="15" height="15" viewBox="0 0 15 15" fill="current" xmlns="http://www.w3.org/2000/svg"><path d="M7.5 15L6.17813 13.6781L11.4094 8.4375H0V6.5625H11.4094L6.17813 1.32187L7.5 0L15 7.5L7.5 15Z" fill="current"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="collection-group">
+                        <div class="collection">
+                            <div class="item-wrapper">
+                                <div class="custom-checkbox-container">
+                                    <label class="custom-checkbox-label label-left">
+                                        <div class="custom-checkbox-inner-wrapper" title="">
+                                            <input class="custom-checkbox  " type="checkbox">
+                                        </div>
+                                        <span class="custom-checkbox-text">SENTINEL-5P</span>
+                                    </label>
+                                </div>
+                                <div class="additional-filters-toggle button  ">
+                                    <div>Filters</div>
+                                    <svg width="15" height="15" viewBox="0 0 15 15" fill="current" xmlns="http://www.w3.org/2000/svg"><path d="M7.5 15L6.17813 13.6781L11.4094 8.4375H0V6.5625H11.4094L6.17813 1.32187L7.5 0L15 7.5L7.5 15Z" fill="current"></path></svg></div></div></div></div><div class="collection-group"><div class="collection"><div class="item-wrapper"><div class="custom-checkbox-container"><label class="custom-checkbox-label label-left"><div class="custom-checkbox-inner-wrapper" title=""><input class="custom-checkbox  " type="checkbox"></div><span class="custom-checkbox-text">SENTINEL-6</span></label></div><div class="additional-filters-toggle button  disabled"><div>Filters</div><svg width="15" height="15" viewBox="0 0 15 15" fill="current" xmlns="http://www.w3.org/2000/svg"><path d="M7.5 15L6.17813 13.6781L11.4094 8.4375H0V6.5625H11.4094L6.17813 1.32187L7.5 0L15 7.5L7.5 15Z" fill="current"></path></svg></div></div></div></div><div class="collection-group"><div class="collection"><div class="item-wrapper"><div class="custom-checkbox-container"><label class="custom-checkbox-label label-left"><div class="custom-checkbox-inner-wrapper" title=""><input class="custom-checkbox  " type="checkbox"></div><span class="custom-checkbox-text">CCM Optical</span></label></div><div class="additional-filters-toggle button  "><div>Filters</div><svg width="15" height="15" viewBox="0 0 15 15" fill="current" xmlns="http://www.w3.org/2000/svg"><path d="M7.5 15L6.17813 13.6781L11.4094 8.4375H0V6.5625H11.4094L6.17813 1.32187L7.5 0L15 7.5L7.5 15Z" fill="current"></path></svg></div></div></div></div><div class="collection-group"><div class="collection"><div class="item-wrapper"><div class="custom-checkbox-container"><label class="custom-checkbox-label label-left"><div class="custom-checkbox-inner-wrapper" title=""><input class="custom-checkbox  " type="checkbox"></div><span class="custom-checkbox-text">CCM DEM</span></label></div><div class="additional-filters-toggle button  "><div>Filters</div><svg width="15" height="15" viewBox="0 0 15 15" fill="current" xmlns="http://www.w3.org/2000/svg"><path d="M7.5 15L6.17813 13.6781L11.4094 8.4375H0V6.5625H11.4094L6.17813 1.32187L7.5 0L15 7.5L7.5 15Z" fill="current"></path></svg></div></div></div></div><div class="collection-group"><div class="collection"><div class="item-wrapper"><div class="custom-checkbox-container"><label class="custom-checkbox-label label-left"><div class="custom-checkbox-inner-wrapper" title=""><input class="custom-checkbox  " type="checkbox"></div><span class="custom-checkbox-text">CCM SAR</span></label></div><div class="additional-filters-toggle button  "><div>Filters</div><svg width="15" height="15" viewBox="0 0 15 15" fill="current" xmlns="http://www.w3.org/2000/svg"><path d="M7.5 15L6.17813 13.6781L11.4094 8.4375H0V6.5625H11.4094L6.17813 1.32187L7.5 0L15 7.5L7.5 15Z" fill="current"></path></svg></div></div></div></div><div class="collection-group"><div class="collection"><div class="item-wrapper"><div class="custom-checkbox-container"><label class="custom-checkbox-label label-left"><div class="custom-checkbox-inner-wrapper" title=""><input class="custom-checkbox  " type="checkbox"></div><span class="custom-checkbox-text">GLOBAL-MOSAICS</span></label></div><div class="additional-filters-toggle button  disabled"><div>Filters</div><svg width="15" height="15" viewBox="0 0 15 15" fill="current" xmlns="http://www.w3.org/2000/svg"><path d="M7.5 15L6.17813 13.6781L11.4094 8.4375H0V6.5625H11.4094L6.17813 1.32187L7.5 0L15 7.5L7.5 15Z" fill="current"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="collection-group">
+                        <div class="collection">
+                            <div class="item-wrapper">
+                                <div class="custom-checkbox-container">
+                                    <label class="custom-checkbox-label label-left">
+                                        <div class="custom-checkbox-inner-wrapper" title="">
+                                            <input class="custom-checkbox  " type="checkbox">
+                                        </div>
+                                        <span class="custom-checkbox-text">CLMS Land Cover and Land Use Mapping</span>
+                                    </label>
+                                </div>
+                                <div class="additional-filters-toggle button  ">
+                                    <div>Filters</div>
+                                    <svg width="15" height="15" viewBox="0 0 15 15" fill="current" xmlns="http://www.w3.org/2000/svg"><path d="M7.5 15L6.17813 13.6781L11.4094 8.4375H0V6.5625H11.4094L6.17813 1.32187L7.5 0L15 7.5L7.5 15Z" fill="current"></path></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="collection-group">
+                        <div class="collection">
+                            <div class="item-wrapper">
+                                <div class="custom-checkbox-container">
+                                    <label class="custom-checkbox-label label-left">
+                                        <div class="custom-checkbox-inner-wrapper" title="">
+                                            <input class="custom-checkbox  " type="checkbox">
+                                        </div>
+                                        <span class="custom-checkbox-text">CLMS Bio-geophysical Parameters</span>
+                                    </label>
+                                </div>
+                                <div class="additional-filters-toggle button  ">
+                                    <div>Filters</div>
+                                    <svg width="15" height="15" viewBox="0 0 15 15" fill="current" xmlns="http://www.w3.org/2000/svg"><path d="M7.5 15L6.17813 13.6781L11.4094 8.4375H0V6.5625H11.4094L6.17813 1.32187L7.5 0L15 7.5L7.5 15Z" fill="current"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clear">
+
+        </div>
+        <div class="select-time-range">
+            <div class="time-range-advanced-title">Time range:</div>
+            <div class="timespan-picker">
+                <div class="date-time-input ">
+                    <div class="date-time-input-label">From:</div>
+                    <div class="date-input">
+                        <div class="date-picker ">
+                            <div class="date-picker-input-wrapper">
+                                <i class="fas fa-chevron-left  timespan-date-picker" title=""></i>
+                                <input class="date-picker-input timespan-date-picker " placeholder="YYYY-MM-DD" value="2025-05-17">
+                                <i class="fas fa-chevron-right  timespan-date-picker" title=""></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="time-input ">
+                        <div class="time-input-hours-minutes">
+                            <div class="numeric-input">
+                                <label>hh</label>
+                                <input class="input-value" type="text" min="0" max="23" value="00">
+                                <div class="spinner">
+                                    <div class="up">
+                                        <i class="fas fa-chevron-up"></i>
+                                    </div>
+                                    <div class="down">
+                                        <i class="fas fa-chevron-down"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="time-input-hours-minutes no-full-width">:</div>
+                        <div class="time-input-hours-minutes no-right-margin">
+                            <div class="numeric-input">
+                                <label>mm</label>
+                                <input class="input-value" type="text" min="0" max="59" value="00">
+                                <div class="spinner">
+                                    <div class="up">
+                                        <i class="fas fa-chevron-up"></i>
+                                    </div>
+                                    <div class="down">
+                                        <i class="fas fa-chevron-down"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="date-time-input ">
+                    <div class="date-time-input-label">Until:</div>
+                    <div class="date-input"><div class="date-picker ">
+                        <div class="date-picker-input-wrapper">
+                            <i class="fas fa-chevron-left  timespan-date-picker" title=""></i>
+                            <input class="date-picker-input timespan-date-picker " placeholder="YYYY-MM-DD" value="2025-06-17">
+                            <i class="fas fa-chevron-right  timespan-date-picker" title=""></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="time-input ">
+                    <div class="time-input-hours-minutes">
+                        <div class="numeric-input">
+                            <label>hh</label><input class="input-value" type="text" min="0" max="23" value="23">
+                            <div class="spinner">
+                                <div class="up">
+                                    <i class="fas fa-chevron-up"></i>
+                                </div>
+                                <div class="down">
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="time-input-hours-minutes no-full-width">:</div>
+                    <div class="time-input-hours-minutes no-right-margin">
+                        <div class="numeric-input">
+                            <label>mm</label>
+                            <input class="input-value" type="text" min="0" max="59" value="59">
+                            <div class="spinner"><div class="up">
+                                <i class="fas fa-chevron-up"></i>
+                            </div>
+                            <div class="down">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="timespan-calendar-holder">
+
+        </div>
+    </div>
+    <div class="calendar-holder"></div>
+    <div class="filter-search-by-months ">
+        <div class="custom-checkbox-container">
+            <label class="custom-checkbox-label label-left">
+                <div class="custom-checkbox-inner-wrapper" title="">
+                    <input class="custom-checkbox  " type="checkbox">
+                </div>
+                <span class="custom-checkbox-text">Filter by months</span>
+            </label>
+        </div>
+    </div>
+    <a class="eob-btn  full-size " title="Search">Search</a>
+</div>
+</div>
+</div>
+</div>
+  </div>
 </div>
