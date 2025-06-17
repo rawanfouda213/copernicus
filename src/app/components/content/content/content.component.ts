@@ -30,6 +30,7 @@ interface CollectionButton {
 export class ContentComponent {
 activeTab: string = 'visualize'; 
   searchQuery: string = '';
+  isDatePanelExpanded: boolean = true;
 collections: Collection[] = [
     { label: 'SENTINEL-1', isToggleDisabled: false },
     { label: 'SENTINEL-2', isToggleDisabled: false },
@@ -112,4 +113,7 @@ collections: Collection[] = [
   performSearch() {
     console.log('Searching for:', this.searchQuery);
   }
-}
+
+  toggleDatePanel(): void {
+    this.isDatePanelExpanded = !this.isDatePanelExpanded;
+  }}
