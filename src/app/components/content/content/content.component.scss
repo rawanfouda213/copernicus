@@ -47,7 +47,7 @@
         overflow-y: scroll;
 
         .active {
-            display: block;
+            // display: block;
         }
 
         .visualization-panel {
@@ -247,6 +247,7 @@
         .title,
         .expanded {
             align-items: baseline !important;
+            
         }
     }
 }
@@ -1143,3 +1144,89 @@ html input, body input, #root input, #app input, #map input {
     border-radius: 50%;
     transition: transform 0.2s;
 }
+
+.collapsible-panel {
+  &.theme-select-container {
+    .content {
+      margin-top: 0;
+      transition: height 0.3s ease;
+    }
+
+    .title-content {
+      flex-grow: 1;
+      transition: opacity 0.3s ease;
+    }
+
+    .title-content[style*="display: none"] {
+      opacity: 0;
+    }
+  }
+
+  &.collection-selection-container {
+    .title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .title-content {
+      flex-grow: 1;
+    }
+
+    .collapsed-title {
+      display: flex;
+      align-items: center;
+      gap: 43px; // المسافة بين العناصر
+      .collection-search-tools {
+        display: flex;
+        gap: 5px; // المسافة بين الايقونات
+        .badge-wrapper {
+          margin: 0; // نظبط الايقونات تبقى جنب بعض
+        }
+      }
+    }
+    .content {
+      margin-top: 0;
+      transition: height 0.3s ease;
+    }
+
+    .content[style*="display: none"] {
+      height: 0;
+      overflow: hidden;
+    }
+  }
+}
+   .collection-search-tools {
+            display: flex;
+            flex-direction: row;
+            margin-right: 18px;
+            background-color: #fff;
+            gap: 4px;
+
+            .collection-search-tools-wrapper {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 33px;
+                height: 33px;
+                box-shadow: 0 0 4px 4px #dddddd40;
+                cursor: pointer;
+
+                &.active {
+                    background-color: #0a4393;
+
+                    svg {
+                        fill: #77cc09;
+                    }
+                }
+
+                &.disabled {
+                    opacity: 0.5;
+                    cursor: default;
+                }
+
+                svg {
+                    fill: #0a4393;
+                }
+            }
+        }

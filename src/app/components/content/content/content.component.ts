@@ -138,11 +138,15 @@ collections: Collection[] = [
     toggleCollectionPanel() {
     this.isCollectionPanelExpanded = !this.isCollectionPanelExpanded;
   }
-    getCollapsedTitle(): string {
-    const collection = 'Sentinel-1'; 
+  getCollapsedTitle(): string {
+    const collection = this.selectedSatellite;
+   const selectedMode = this.acquisitionModes.find(m => m.isSelected)?.text.split(' - ')[0] || '';
     const selectedPols = this.polarizations.filter(p => p.isSelected).map(p => p.text);
     const polarization = selectedPols.length > 0 ? selectedPols.join('+') : '';
-    return polarization ? `${collection} ${polarization}` : collection;
+    const selectedDirections = this.orbitDirections.filter(d => d.isSelected).map(d => d.text);
+    // const direction = selectedDirections.length > 0 ? selectedDirections.join('+') : '';
+    const parts = [selectedMode, polarization].filter(Boolean);
+    return parts.length > 0 ? `${collection} ${parts.join(' ')}` : collection;
   }
   selectSingleItem(item: any, array: any[]) {
     array.forEach(i => i.isSelected = false);
