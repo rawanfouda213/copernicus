@@ -1,6 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
 interface Collection {
   label: string;
   isToggleDisabled: boolean;
@@ -24,7 +27,7 @@ interface CollectionButton {
 }
 @Component({
   selector: 'app-content',
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule,FormsModule,MatDatepickerModule, MatInputModule, MatNativeDateModule],
   templateUrl: './content.component.html',
   styleUrl: './content.component.scss'
 })

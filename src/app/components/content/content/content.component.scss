@@ -1231,3 +1231,34 @@ html input, body input, #root input, #app input, #map input {
                 }
             }
         }
+.date-picker-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.date-picker-input {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.mat-datepicker-toggle {
+  display: none; /* نخفي الـ toggle الافتراضي لأننا بنستخدم الأيقونات الخاصة */
+}
+
+.mat-datepicker-input {
+  width: 100%;
+}
+
+.mat-datepicker-panel {
+  z-index: 1000; 
+}
+::ng-deep .mat-calendar-table {
+    background-color: #fff !important;
+}
+::ng-deep .mat-datepicker-content .mat-calendar {
+    background-color: #fff !important;
+
+}

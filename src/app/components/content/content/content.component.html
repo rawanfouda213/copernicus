@@ -10,68 +10,68 @@
 <div id="visualization-tab" class="tabPanelContainer" *ngIf="activeTab === 'visualize'">
     <div class="active">
         <div class="visualization-panel">
-            <div class="date-selection">
-                <div class="visualization-time-select">
-                    <div class="collapsible-panel undefined">
-                        <div class="title" [ngClass]="{'expanded': isDatePanelExpanded}">
-                            <div class="title-content">
-                                <ng-container *ngIf="isDatePanelExpanded">
-                                    <div class="date-timespan-label">
-                                        <b class="time-select-type">Date: Single</b>
-                                        <div class="date-tabs">
-                                            <svg *ngFor="let tab of dateTabs" width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg" [attr.title]="tab.title" [ngClass]="tab.class">
-                                                <rect width="33" height="33" fill="#ffffff"></rect>
-                                                <path [attr.d]="tab.path" fill="#0a4393"></path>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </ng-container>
-                                <ng-container *ngIf="!isDatePanelExpanded">
-                                    <div class="date-picker">
-                                        <div class="date-picker-input-wrapper">
-                                            <i class="fas fa-chevron-left" title=""></i>
-                                            <input class="date-picker-input" placeholder="YYYY-MM-DD" value="">
-                                            <i class="fas fa-chevron-right" title=""></i>
-                                        </div>
-                                    </div>
-                                    <div class="small-action-button" title="Show latest date">
-                                        <svg width="15" height="15" viewBox="0 0 15 15" fill="current" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M7.5 15L6.17813 13.6781L11.4094 8.4375H0V6.5625H11.4094L6.17813 1.32187L7.5 0L15 7.5L7.5 15Z" fill="current"></path>
-                                        </svg>
-                                    </div>
-                                </ng-container>
-                            </div>
-                            <div class="title-arrow-wrapper" (click)="toggleDatePanel()">
-                                <i class="fa" [ngClass]="isDatePanelExpanded ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
-                            </div>
-                        </div>
-                        <div class="content" *ngIf="isDatePanelExpanded">
-                            <div class="datepicker-cloud-coverage-wrapper">
-                                <div class="date-picker">
-                                    <div class="date-picker-input-wrapper">
-                                        <i class="fas fa-chevron-left" title=""></i>
-                                        <input class="date-picker-input" placeholder="YYYY-MM-DD" value="">
-                                        <i class="fas fa-chevron-right" title=""></i>
-                                    </div>
-                                </div>
-                                <!-- <div class="cloud-coverage-picker disabled">
-                                        <i class="fas fa-cloud"></i>
-                                        <div>30%</div>
-                                    </div> -->
-                            </div>
-                            <div class="action-button disabled" title="">
-                                <div class="action-button-text disabled">Show latest date</div>
-                                <svg width="15" height="15" viewBox="0 0 15 15" fill="current" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M7.5 15L6.17813 13.6781L11.4094 8.4375H0V6.5625H11.4094L6.17813 1.32187L7.5 0L15 7.5L7.5 15Z" fill="current"></path>
+ <!--^ Date Content -->
+<div class="date-selection">
+    <div class="visualization-time-select">
+        <div class="collapsible-panel undefined">
+            <div class="title" [ngClass]="{'expanded': isDatePanelExpanded}">
+                <div class="title-content">
+                    <ng-container *ngIf="isDatePanelExpanded">
+                        <div class="date-timespan-label">
+                            <b class="time-select-type">Date: Single</b>
+                            <div class="date-tabs">
+                                <svg *ngFor="let tab of dateTabs" width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg" [attr.title]="tab.title" [ngClass]="tab.class">
+                                    <rect width="33" height="33" fill="#ffffff"></rect>
+                                    <path [attr.d]="tab.path" fill="#0a4393"></path>
                                 </svg>
                             </div>
-                            <div class="secondary disabled">
-                                <div class="action-button-text secondary disabled">Find products for current view</div>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="!isDatePanelExpanded">
+                        <div class="date-picker">
+                            <div class="date-picker-input-wrapper">
+                                <i class="fas fa-chevron-left" title=""></i>
+                                <input class="date-picker-input" placeholder="YYYY-MM-DD" value="" matInput [matDatepicker]="picker" readonly (click)="picker.open()">
+                                <i class="fas fa-chevron-right" title=""></i>
+                                <mat-datepicker #picker></mat-datepicker>
                             </div>
+                        </div>
+                        <div class="small-action-button" title="Show latest date">
+                            <svg width="15" height="15" viewBox="0 0 15 15" fill="current" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7.5 15L6.17813 13.6781L11.4094 8.4375H0V6.5625H11.4094L6.17813 1.32187L7.5 0L15 7.5L7.5 15Z" fill="current"></path>
+                            </svg>
+                        </div>
+                    </ng-container>
+                </div>
+                <div class="title-arrow-wrapper" (click)="toggleDatePanel()">
+                    <i class="fa" [ngClass]="isDatePanelExpanded ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+                </div>
+            </div>
+            <div class="content" *ngIf="isDatePanelExpanded">
+                <div class="datepicker-cloud-coverage-wrapper">
+                    <div class="date-picker">
+                        <div class="date-picker-input-wrapper">
+                            <i class="fas fa-chevron-left" title=""></i>
+                            <input class="date-picker-input" placeholder="YYYY-MM-DD" value="" matInput [matDatepicker]="pickerExpanded" readonly (click)="pickerExpanded.open()">
+                            <i class="fas fa-chevron-right" title=""></i>
+                            <mat-datepicker #pickerExpanded></mat-datepicker>
                         </div>
                     </div>
                 </div>
+                <div class="action-button disabled" title="">
+                    <div class="action-button-text disabled">Show latest date</div>
+                    <svg width="15" height="15" viewBox="0 0 15 15" fill="current" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7.5 15L6.17813 13.6781L11.4094 8.4375H0V6.5625H11.4094L6.17813 1.32187L7.5 0L15 7.5L7.5 15Z" fill="current"></path>
+                    </svg>
+                </div>
+                <div class="secondary disabled">
+                    <div class="action-button-text secondary disabled">Find products for current view</div>
+                </div>
             </div>
+        </div>
+    </div>
+</div>
+ <!--^ Configurations Content -->
             <div class="collapsible-panel theme-select-container">
                 <ng-container *ngIf="isThemePanelExpanded">
                 <div class="title" [ngClass]="{'expanded': isThemePanelExpanded}">
@@ -162,6 +162,7 @@
             
                  </ng-container>
             </div>
+ <!--^ Data Collections Content -->
             <div class="collapsible-panel collection-selection-container">
                 <div class="title" [ngClass]="{'expanded': isCollectionPanelExpanded}">
                     <div class="title-content">
