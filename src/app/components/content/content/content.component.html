@@ -73,8 +73,9 @@
                 </div>
             </div>
             <div class="collapsible-panel theme-select-container">
+                <ng-container *ngIf="isThemePanelExpanded">
                 <div class="title" [ngClass]="{'expanded': isThemePanelExpanded}">
-                    <div class="title-content" *ngIf="isThemePanelExpanded">
+                    <div class="title-content">
                         <div class="title-text">Configurations:</div>
                     </div>
                     <div class="title-arrow-wrapper" (click)="toggleThemePanel()">
@@ -116,6 +117,50 @@
                         </div>
                     </div>
                 </div>
+                </ng-container>
+                 <ng-container *ngIf="!isThemePanelExpanded">
+                 <div class="title">
+               <div class="content">
+                    <div id="theme-select" class="top">
+                        <div class="theme-select-highlights-wrapper">
+                            <div class="theme-label-select-wrapper">
+                                <div class="theme-search">
+                                    <div class="theme-search-header">
+                                        <div class="theme-selection">
+                                            <div class="theme-select-dropdown css-b62m3t-container">
+                                                <span id="react-select-2-live-region" class="css-7pg0cj-a11yText"></span>
+                                                <span aria-live="polite" aria-atomic="false" aria-relevant="additions text" class="css-7pg0cj-a11yText"></span>
+                                                <div class="theme-select__control css-12278lu-control">
+                                                    <div class="theme-select__value-container theme-select__value-container--has-value css-sg3nxe">
+                                                        <span class="theme-select__single-value">{{ selectedTheme }}</span>
+                                                    </div>
+                                                    <select class="theme-select__input" [(ngModel)]="selectedTheme" aria-autocomplete="list" aria-expanded="false" aria-haspopup="true" role="combobox" style="color: inherit; background: 0px center; opacity: 0; width: 100%; grid-area: 1 / 2; font: inherit; min-width: 2px; border: 0px; margin: 0px; outline: 0px; padding: 0px; position: absolute; top: 0; left: 0; height: 100%; cursor: pointer;">
+                                                        <option *ngFor="let theme of themes" [value]="theme">{{ theme }}</option>
+                                                    </select>
+                                                    <div class="theme-select__indicators css-1wy0on6">
+                                                        <span class="theme-select__indicator-separator css-1uei4ir-indicatorSeparator"></span>
+                                                        <div class="theme-select__indicator theme-select__dropdown-indicator css-1aepsjj-indicatorContainer" aria-hidden="true">
+                                                            <svg width="14" height="7" viewBox="0 0 14 7" xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="M1 0.582031L6.83434 6.41637" stroke="#000000" stroke-linecap="round" id="chevron-down"></path>
+                                                                <path d="M12.668 0.582031L6.83363 6.41637" stroke="#000000" stroke-linecap="round" id="chevron-down"></path>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <div class="title-arrow-wrapper" (click)="toggleThemePanel()">
+                        <i class="fa" [ngClass]="isThemePanelExpanded ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+                    </div>
+                </div>
+            
+                 </ng-container>
             </div>
             <div class="collapsible-panel collection-selection-container">
                 <div class="title" [ngClass]="{'expanded': isCollectionPanelExpanded}">
