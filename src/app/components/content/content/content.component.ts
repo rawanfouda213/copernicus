@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDatepickerInputEvent, MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 interface Collection {
@@ -124,6 +124,30 @@ collections: Collection[] = [
     { text: 'Ascending', title: 'Ascending Orbit', isSelected: true },
     { text: 'Descending', title: 'Descending Orbit', isSelected: false }
   ];
+
+ selectedDate: Date | null = null; 
+  setLatestDate() {
+    this.selectedDate = new Date(); 
+  }
+
+onDateSelect(event: any) {
+  if (event instanceof Date) {
+    this.selectedDate = event;
+  }
+}
+
+
+  onDateChange(event: MatDatepickerInputEvent<any>) {
+    this.selectedDate = event.value;
+  }
+
+  changeDate(days: number) {
+    if (this.selectedDate) {
+      const newDate = new Date(this.selectedDate);
+      newDate.setDate(newDate.getDate() + days);
+      this.selectedDate = newDate;
+    }
+  }
   setActiveTab(tab: string) {
     this.activeTab = tab;
   }
@@ -158,4 +182,5 @@ collections: Collection[] = [
  toggleOrbitDirectionIndependent(direction: any) {
     direction.isSelected = !direction.isSelected;
   }
+   
 }
