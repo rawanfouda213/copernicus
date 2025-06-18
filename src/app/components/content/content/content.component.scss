@@ -1262,3 +1262,191 @@ html input, body input, #root input, #app input, #map input {
     background-color: #fff !important;
 
 }
+
+.visualization-panel .layer-selection {
+    display: block;
+    background-color: #fff;
+    box-shadow: 0 0 6px #0003;
+    color: #041223;
+    font-size: 14px;
+    padding: 11px;
+}
+.visualization-panel>* {
+    margin: 5px 1px 5px 5px;
+}
+.visualization-panel .layer-selection .layer-header {
+    display: flex
+;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.visualization-panel .layer-selection .layer-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    color: #0a4393;
+}
+.visualization-panel .layer-selection .layer-container.active {
+    background-color: #0a4393;
+    color: #fff;
+    cursor: default;
+}
+.visualization-panel .layer-selection .layer-container {
+    margin-bottom: 5px;
+    box-shadow: 0 0 6px #0003;
+}
+.visualization-panel .layer-selection .layer-header {
+    display: flex
+;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.visualization-panel .layer-header .preview {
+    display: flex
+;
+}
+.visualization-panel .layer-header .preview img {
+    width: 40px;
+    height: 40px;
+}
+.visualization-panel .layer-header .title {
+    display: flex
+;
+    flex-direction: column;
+    flex-grow: 1;
+    padding-left: 10px;
+}
+.visualization-panel .layer-header .title .active-title {
+    font-weight: 700;
+}
+.visualization-panel .layer-header .title .active-description {
+    width: 200px;
+    white-space: nowrap;
+    overflow-x: clip;
+    text-overflow: ellipsis;
+}
+.visualization-panel .layer-header .title small {
+    font-size: 10px;
+}
+.visualization-panel .layer-header .icons {
+    display: flex
+;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 125px;
+    margin-right: 10px;
+    column-gap: 2px;
+}
+.visualization-panel .layer-header .icons .plus {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #fff;
+}
+.visualization-panel .layer-header .icons svg {
+    min-width: 21px;
+}
+.visualization-panel .layer-header .icons .double-chevron-down {
+    cursor: pointer;
+    width: 15px;
+    height: 13px;
+    margin-top: 2px;
+}
+.visualization-panel .layer-selection .layer-container {
+    margin-bottom: 5px;
+    cursor: pointer;
+    background-color: #fff;
+    box-shadow: 0 0 6px #0003;
+}
+.visualization-panel .layer-selection .layer-header {
+    display: flex
+;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.visualization-panel .layer-header .title {
+    display: flex
+;
+    flex-direction: column;
+    flex-grow: 1;
+    padding-left: 10px;
+}
+
+.visualization-panel .visualization-actions {
+    position: sticky;
+    bottom: 0;
+    font-size: 13px;
+    padding: 5px 10px;
+    background-color: #fff;
+    box-shadow: 0 0 6px #0003;
+}
+.visualization-panel .layer-header .preview-custom {
+    background-color: #303333;
+    color: #fff;
+    display: flex
+;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+}
+.visualization-panel>* {
+    margin: 5px 1px 5px 5px;
+}
+.visualization-panel .visualization-actions .action-bar {
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.action-bar {
+    display: flex
+;
+    flex-direction: row;
+    color: #041223;
+    font-size: 13px;
+    column-gap: 10px;
+}
+.action-bar .action-wrapper {
+    flex-direction: row;
+    padding: 5px 0;
+    display: flex
+;
+    cursor: pointer;
+    align-items: center;
+    overflow: hidden;
+}
+.action-bar i {
+    margin-right: 5px;
+}
+.action-bar .action-wrapper {
+    flex-direction: row;
+    padding: 5px 0;
+    display: flex
+;
+    cursor: pointer;
+    align-items: center;
+    overflow: hidden;
+}
+.fa.fa-eye-slash {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 400;
+}
+.fa-eye-slash::before {
+    content: "";
+}
+.action-bar .action-wrapper div {
+    text-wrap: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-decoration: underline 1px;
+    font-size: 12px;
+    font-weight: 400;
+}
+.fa.fa-sliders::before {
+    content: "";
+}

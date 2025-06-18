@@ -10,102 +10,103 @@
 <div id="visualization-tab" class="tabPanelContainer" *ngIf="activeTab === 'visualize'">
     <div class="active">
         <div class="visualization-panel">
- <!--^ Date Content -->
-<div class="date-selection">
-    <div class="visualization-time-select">
-        <div class="collapsible-panel undefined">
-            <div class="title" [ngClass]="{'expanded': isDatePanelExpanded}">
-                <div class="title-content">
-                    <ng-container *ngIf="isDatePanelExpanded">
-                        <div class="date-timespan-label">
-                            <b class="time-select-type">Date: Single</b>
-                            <div class="date-tabs">
-                                <svg *ngFor="let tab of dateTabs" width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg" [attr.title]="tab.title" [ngClass]="tab.class">
-                                    <rect width="33" height="33" fill="#ffffff"></rect>
-                                    <path [attr.d]="tab.path" fill="#0a4393"></path>
+            <!--^ Date Content -->
+            <div class="date-selection">
+                <div class="visualization-time-select">
+                    <div class="collapsible-panel undefined">
+                        <div class="title" [ngClass]="{'expanded': isDatePanelExpanded}">
+                            <div class="title-content">
+                                <ng-container *ngIf="isDatePanelExpanded">
+                                    <div class="date-timespan-label">
+                                        <b class="time-select-type">Date: {{ selectedTabTitle }}</b>
+                                        <div class="date-tabs">
+                                            <svg *ngFor="let tab of dateTabs" width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg" [attr.title]="tab.title" [ngClass]="tab.class" (click)="selectTab(tab)">
+                                                <rect width="33" height="33" fill="#ffffff"></rect>
+                                                <path [attr.d]="tab.path" fill="#0a4393"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                                <ng-container *ngIf="!isDatePanelExpanded">
+                                    <div class="date-picker">
+                                        <div class="date-picker-input-wrapper">
+                                            <i class="fas fa-chevron-left" title="Previous day" (click)="changeDate(-1)"></i>
+                                            <input class="date-picker-input" placeholder="YYYY-MM-DD" [value]="selectedDate ? (selectedDate | date:'yyyy-MM-dd') : ''" matInput [matDatepicker]="picker" readonly (click)="picker.open()" (dateChange)="onDateChange($event)">
+                                            <i class="fas fa-chevron-right" title="Next day" (click)="changeDate(1)"></i>
+                                            <mat-datepicker #picker (selectedChange)="onDateSelect($event)"></mat-datepicker>
+                                        </div>
+                                    </div>
+                                    <div class="small-action-button" title="Show latest date" (click)="setLatestDate()">
+                                        <svg width="15" height="15" viewBox="0 0 15 15" fill="current" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M7.5 15L6.17813 13.6781L11.4094 8.4375H0V6.5625H11.4094L6.17813 1.32187L7.5 0L15 7.5L7.5 15Z" fill="current"></path>
+                                        </svg>
+                                    </div>
+                                </ng-container>
+                            </div>
+                            <div class="title-arrow-wrapper" (click)="toggleDatePanel()">
+                                <i class="fa" [ngClass]="isDatePanelExpanded ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+                            </div>
+                        </div>
+                        <div class="content" *ngIf="isDatePanelExpanded">
+                            <div class="datepicker-cloud-coverage-wrapper">
+                                <div class="date-picker">
+                                    <div class="date-picker-input-wrapper">
+                                        <i class="fas fa-chevron-left" title="Previous day" (click)="changeDate(-1)"></i>
+                                        <input class="date-picker-input" placeholder="YYYY-MM-DD" [value]="selectedDate ? (selectedDate | date:'yyyy-MM-dd') : ''" matInput [matDatepicker]="pickerExpanded" readonly (click)="pickerExpanded.open()" (dateChange)="onDateChange($event)">
+                                        <i class="fas fa-chevron-right" title="Next day" (click)="changeDate(1)"></i>
+                                        <mat-datepicker #pickerExpanded (selectedChange)="onDateSelect($event)"></mat-datepicker>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="action-button disabled" title="">
+                                <div class="action-button-text disabled">Show latest date</div>
+                                <svg width="15" height="15" viewBox="0 0 15 15" fill="current" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M7.5 15L6.17813 13.6781L11.4094 8.4375H0V6.5625H11.4094L6.17813 1.32187L7.5 0L15 7.5L7.5 15Z" fill="current"></path>
                                 </svg>
                             </div>
-                        </div>
-                    </ng-container>
-                    <ng-container *ngIf="!isDatePanelExpanded">
-                        <div class="date-picker">
-                            <div class="date-picker-input-wrapper">
-                                <i class="fas fa-chevron-left" title="Previous day" (click)="changeDate(-1)"></i>
-                                <input class="date-picker-input" placeholder="YYYY-MM-DD" [value]="selectedDate ? (selectedDate | date:'yyyy-MM-dd') : ''" matInput [matDatepicker]="picker" readonly (click)="picker.open()" (dateChange)="onDateChange($event)">
-                                <i class="fas fa-chevron-right" title="Next day" (click)="changeDate(1)"></i>
-                                <mat-datepicker #picker (selectedChange)="onDateSelect($event)"></mat-datepicker>
+                            <div class="secondary disabled">
+                                <div class="action-button-text secondary disabled">Find products for current view</div>
                             </div>
-                        </div>
-                        <div class="small-action-button" title="Show latest date" (click)="setLatestDate()">
-                            <svg width="15" height="15" viewBox="0 0 15 15" fill="current" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M7.5 15L6.17813 13.6781L11.4094 8.4375H0V6.5625H11.4094L6.17813 1.32187L7.5 0L15 7.5L7.5 15Z" fill="current"></path>
-                            </svg>
-                        </div>
-                    </ng-container>
-                </div>
-                <div class="title-arrow-wrapper" (click)="toggleDatePanel()">
-                    <i class="fa" [ngClass]="isDatePanelExpanded ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
-                </div>
-            </div>
-            <div class="content" *ngIf="isDatePanelExpanded">
-                <div class="datepicker-cloud-coverage-wrapper">
-                    <div class="date-picker">
-                        <div class="date-picker-input-wrapper">
-                            <i class="fas fa-chevron-left" title="Previous day" (click)="changeDate(-1)"></i>
-                            <input class="date-picker-input" placeholder="YYYY-MM-DD" [value]="selectedDate ? (selectedDate | date:'yyyy-MM-dd') : ''" matInput [matDatepicker]="pickerExpanded" readonly (click)="pickerExpanded.open()" (dateChange)="onDateChange($event)">
-                            <i class="fas fa-chevron-right" title="Next day" (click)="changeDate(1)"></i>
-                            <mat-datepicker #pickerExpanded (selectedChange)="onDateSelect($event)"></mat-datepicker>
                         </div>
                     </div>
                 </div>
-                <div class="action-button disabled" title="">
-                    <div class="action-button-text disabled">Show latest date</div>
-                    <svg width="15" height="15" viewBox="0 0 15 15" fill="current" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M7.5 15L6.17813 13.6781L11.4094 8.4375H0V6.5625H11.4094L6.17813 1.32187L7.5 0L15 7.5L7.5 15Z" fill="current"></path>
-                    </svg>
-                </div>
-                <div class="secondary disabled">
-                    <div class="action-button-text secondary disabled">Find products for current view</div>
-                </div>
             </div>
-        </div>
-    </div>
-</div>
- <!--^ Configurations Content -->
+            <!--^ Configurations Content -->
             <div class="collapsible-panel theme-select-container">
                 <ng-container *ngIf="isThemePanelExpanded">
-                <div class="title" [ngClass]="{'expanded': isThemePanelExpanded}">
-                    <div class="title-content">
-                        <div class="title-text">Configurations:</div>
+                    <div class="title" [ngClass]="{'expanded': isThemePanelExpanded}">
+                        <div class="title-content">
+                            <div class="title-text">Configurations:</div>
+                        </div>
+                        <div class="title-arrow-wrapper" (click)="toggleThemePanel()">
+                            <i class="fa" [ngClass]="isThemePanelExpanded ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+                        </div>
                     </div>
-                    <div class="title-arrow-wrapper" (click)="toggleThemePanel()">
-                        <i class="fa" [ngClass]="isThemePanelExpanded ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
-                    </div>
-                </div>
-                <div class="content">
-                    <div id="theme-select" class="top">
-                        <div class="theme-select-highlights-wrapper">
-                            <div class="theme-label-select-wrapper">
-                                <div class="theme-search">
-                                    <div class="theme-search-header">
-                                        <div class="theme-selection">
-                                            <div class="theme-select-dropdown css-b62m3t-container">
-                                                <span id="react-select-2-live-region" class="css-7pg0cj-a11yText"></span>
-                                                <span aria-live="polite" aria-atomic="false" aria-relevant="additions text" class="css-7pg0cj-a11yText"></span>
-                                                <div class="theme-select__control css-12278lu-control">
-                                                    <div class="theme-select__value-container theme-select__value-container--has-value css-sg3nxe">
-                                                        <span class="theme-select__single-value">{{ selectedTheme }}</span>
-                                                    </div>
-                                                    <select class="theme-select__input" [(ngModel)]="selectedTheme" aria-autocomplete="list" aria-expanded="false" aria-haspopup="true" role="combobox" style="color: inherit; background: 0px center; opacity: 0; width: 100%; grid-area: 1 / 2; font: inherit; min-width: 2px; border: 0px; margin: 0px; outline: 0px; padding: 0px; position: absolute; top: 0; left: 0; height: 100%; cursor: pointer;">
-                                                        <option *ngFor="let theme of themes" [value]="theme">{{ theme }}</option>
-                                                    </select>
-                                                    <div class="theme-select__indicators css-1wy0on6">
-                                                        <span class="theme-select__indicator-separator css-1uei4ir-indicatorSeparator"></span>
-                                                        <div class="theme-select__indicator theme-select__dropdown-indicator css-1aepsjj-indicatorContainer" aria-hidden="true">
-                                                            <svg width="14" height="7" viewBox="0 0 14 7" xmlns="http://www.w3.org/2000/svg">
-                                                                <path d="M1 0.582031L6.83434 6.41637" stroke="#000000" stroke-linecap="round" id="chevron-down"></path>
-                                                                <path d="M12.668 0.582031L6.83363 6.41637" stroke="#000000" stroke-linecap="round" id="chevron-down"></path>
-                                                            </svg>
+                    <div class="content">
+                        <div id="theme-select" class="top">
+                            <div class="theme-select-highlights-wrapper">
+                                <div class="theme-label-select-wrapper">
+                                    <div class="theme-search">
+                                        <div class="theme-search-header">
+                                            <div class="theme-selection">
+                                                <div class="theme-select-dropdown css-b62m3t-container">
+                                                    <span id="react-select-2-live-region" class="css-7pg0cj-a11yText"></span>
+                                                    <span aria-live="polite" aria-atomic="false" aria-relevant="additions text" class="css-7pg0cj-a11yText"></span>
+                                                    <div class="theme-select__control css-12278lu-control">
+                                                        <div class="theme-select__value-container theme-select__value-container--has-value css-sg3nxe">
+                                                            <span class="theme-select__single-value">{{ selectedTheme }}</span>
+                                                        </div>
+                                                        <select class="theme-select__input" [(ngModel)]="selectedTheme" aria-autocomplete="list" aria-expanded="false" aria-haspopup="true" role="combobox" style="color: inherit; background: 0px center; opacity: 0; width: 100%; grid-area: 1 / 2; font: inherit; min-width: 2px; border: 0px; margin: 0px; outline: 0px; padding: 0px; position: absolute; top: 0; left: 0; height: 100%; cursor: pointer;">
+                                                            <option *ngFor="let theme of themes" [value]="theme">{{ theme }}</option>
+                                                        </select>
+                                                        <div class="theme-select__indicators css-1wy0on6">
+                                                            <span class="theme-select__indicator-separator css-1uei4ir-indicatorSeparator"></span>
+                                                            <div class="theme-select__indicator theme-select__dropdown-indicator css-1aepsjj-indicatorContainer" aria-hidden="true">
+                                                                <svg width="14" height="7" viewBox="0 0 14 7" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M1 0.582031L6.83434 6.41637" stroke="#000000" stroke-linecap="round" id="chevron-down"></path>
+                                                                    <path d="M12.668 0.582031L6.83363 6.41637" stroke="#000000" stroke-linecap="round" id="chevron-down"></path>
+                                                                </svg>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -116,34 +117,35 @@
                             </div>
                         </div>
                     </div>
-                </div>
                 </ng-container>
-                 <ng-container *ngIf="!isThemePanelExpanded">
-                 <div class="title">
-               <div class="content">
-                    <div id="theme-select" class="top">
-                        <div class="theme-select-highlights-wrapper">
-                            <div class="theme-label-select-wrapper">
-                                <div class="theme-search">
-                                    <div class="theme-search-header">
-                                        <div class="theme-selection">
-                                            <div class="theme-select-dropdown css-b62m3t-container">
-                                                <span id="react-select-2-live-region" class="css-7pg0cj-a11yText"></span>
-                                                <span aria-live="polite" aria-atomic="false" aria-relevant="additions text" class="css-7pg0cj-a11yText"></span>
-                                                <div class="theme-select__control css-12278lu-control">
-                                                    <div class="theme-select__value-container theme-select__value-container--has-value css-sg3nxe">
-                                                        <span class="theme-select__single-value">{{ selectedTheme }}</span>
-                                                    </div>
-                                                    <select class="theme-select__input" [(ngModel)]="selectedTheme" aria-autocomplete="list" aria-expanded="false" aria-haspopup="true" role="combobox" style="color: inherit; background: 0px center; opacity: 0; width: 100%; grid-area: 1 / 2; font: inherit; min-width: 2px; border: 0px; margin: 0px; outline: 0px; padding: 0px; position: absolute; top: 0; left: 0; height: 100%; cursor: pointer;">
-                                                        <option *ngFor="let theme of themes" [value]="theme">{{ theme }}</option>
-                                                    </select>
-                                                    <div class="theme-select__indicators css-1wy0on6">
-                                                        <span class="theme-select__indicator-separator css-1uei4ir-indicatorSeparator"></span>
-                                                        <div class="theme-select__indicator theme-select__dropdown-indicator css-1aepsjj-indicatorContainer" aria-hidden="true">
-                                                            <svg width="14" height="7" viewBox="0 0 14 7" xmlns="http://www.w3.org/2000/svg">
-                                                                <path d="M1 0.582031L6.83434 6.41637" stroke="#000000" stroke-linecap="round" id="chevron-down"></path>
-                                                                <path d="M12.668 0.582031L6.83363 6.41637" stroke="#000000" stroke-linecap="round" id="chevron-down"></path>
-                                                            </svg>
+                <ng-container *ngIf="!isThemePanelExpanded">
+                    <div class="title">
+                        <div class="content">
+                            <div id="theme-select" class="top">
+                                <div class="theme-select-highlights-wrapper">
+                                    <div class="theme-label-select-wrapper">
+                                        <div class="theme-search">
+                                            <div class="theme-search-header">
+                                                <div class="theme-selection">
+                                                    <div class="theme-select-dropdown css-b62m3t-container">
+                                                        <span id="react-select-2-live-region" class="css-7pg0cj-a11yText"></span>
+                                                        <span aria-live="polite" aria-atomic="false" aria-relevant="additions text" class="css-7pg0cj-a11yText"></span>
+                                                        <div class="theme-select__control css-12278lu-control">
+                                                            <div class="theme-select__value-container theme-select__value-container--has-value css-sg3nxe">
+                                                                <span class="theme-select__single-value">{{ selectedTheme }}</span>
+                                                            </div>
+                                                            <select class="theme-select__input" [(ngModel)]="selectedTheme" aria-autocomplete="list" aria-expanded="false" aria-haspopup="true" role="combobox" style="color: inherit; background: 0px center; opacity: 0; width: 100%; grid-area: 1 / 2; font: inherit; min-width: 2px; border: 0px; margin: 0px; outline: 0px; padding: 0px; position: absolute; top: 0; left: 0; height: 100%; cursor: pointer;">
+                                                                <option *ngFor="let theme of themes" [value]="theme">{{ theme }}</option>
+                                                            </select>
+                                                            <div class="theme-select__indicators css-1wy0on6">
+                                                                <span class="theme-select__indicator-separator css-1uei4ir-indicatorSeparator"></span>
+                                                                <div class="theme-select__indicator theme-select__dropdown-indicator css-1aepsjj-indicatorContainer" aria-hidden="true">
+                                                                    <svg width="14" height="7" viewBox="0 0 14 7" xmlns="http://www.w3.org/2000/svg">
+                                                                        <path d="M1 0.582031L6.83434 6.41637" stroke="#000000" stroke-linecap="round" id="chevron-down"></path>
+                                                                        <path d="M12.668 0.582031L6.83363 6.41637" stroke="#000000" stroke-linecap="round" id="chevron-down"></path>
+                                                                    </svg>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -153,16 +155,13 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="title-arrow-wrapper" (click)="toggleThemePanel()">
+                            <i class="fa" [ngClass]="isThemePanelExpanded ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+                        </div>
                     </div>
-                </div>
-                    <div class="title-arrow-wrapper" (click)="toggleThemePanel()">
-                        <i class="fa" [ngClass]="isThemePanelExpanded ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
-                    </div>
-                </div>
-            
-                 </ng-container>
+                </ng-container>
             </div>
- <!--^ Data Collections Content -->
+            <!--^ Data Collections Content -->
             <div class="collapsible-panel collection-selection-container">
                 <div class="title" [ngClass]="{'expanded': isCollectionPanelExpanded}">
                     <div class="title-content">
@@ -206,7 +205,7 @@
                         </ng-container>
                         <ng-container *ngIf="!isCollectionPanelExpanded">
                             <div class="collapsed-title">
-                                {{ getCollapsedTitle() }} 
+                                {{ getCollapsedTitle() }}
                                 <div class="collection-search-tools">
                                     <div class="badge-wrapper">
                                         <div class="collection-search-tools-wrapper active" title="Layers Panel" id="layers-panel-button">
@@ -234,11 +233,12 @@
                                         <div class="collection-search-tools-wrapper" title="Pins Panel" id="pins-panel-button">
                                             <svg width="12" height="18" viewBox="0 0 12 18" fill="#fbfffe" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M10.9833 10.6116L6.83614 10.6022L5.95914 17.1346L5.85898 17.1368L4.99423 10.6512L0.830476 10.6671C0.782969 10.0048 0.868731 9.33981 1.08269 8.7113C1.4512 7.62174 2.17958 6.69005 3.148 6.06949C3.1952 6.043 3.23664 6.00737 3.26993 5.96469C3.30321 5.922 3.32765 5.87312 3.34184 5.82089C3.35697 4.92083 3.35194 4.01932 3.35338 3.14016C3.31158 3.11278 3.30221 3.10197 3.29285 3.10125C2.55925 3.04216 2.55925 3.04216 2.55925 2.30569C2.55998 1.83656 2.56358 1.36744 2.55853 0.898312C2.55637 0.674199 2.62843 0.57764 2.87776 0.579082C4.87965 0.58821 6.88202 0.588684 8.88487 0.580517C9.16231 0.579796 9.27329 0.669154 9.2632 0.958844C9.24662 1.51877 9.25887 2.08013 9.25743 2.64078C9.25671 3.08973 9.25598 3.08901 8.79623 3.09333C8.69606 3.09405 8.59518 3.09981 8.47051 3.10486C8.46907 4.02149 8.4597 4.92299 8.47699 5.82376C8.47844 5.92033 8.624 6.03419 8.72705 6.10553C9.44818 6.58553 10.0354 7.24098 10.4337 8.0103C10.8319 8.77962 11.028 9.63756 11.0035 10.5035C11.0003 10.5401 10.9935 10.5763 10.9833 10.6116Z"></path>
-                                            </svg>
+                                                </svg>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                        
                         </ng-container>
                     </div>
                     <div class="title-arrow-wrapper" (click)="toggleCollectionPanel()">
@@ -247,29 +247,30 @@
                 </div>
                 <div class="content" *ngIf="isCollectionPanelExpanded">
                     <div class="collection-buttons-container">
-                                <div id="theme-select" class="top">
-                        <div class="theme-select-highlights-wrapper">
-                            <div class="theme-label-select-wrapper">
-                                <div class="theme-search">
-                                    <div class="theme-search-header">
-                                        <div class="theme-selection">
-                                            <div class="theme-select-dropdown css-b62m3t-container">
-                                                <span id="react-select-2-live-region" class="css-7pg0cj-a11yText"></span>
-                                                <span aria-live="polite" aria-atomic="false" aria-relevant="additions text" class="css-7pg0cj-a11yText"></span>
-                                                <div class="theme-select__control css-12278lu-control">
-                                                    <div class="theme-select__value-container theme-select__value-container--has-value css-sg3nxe">
-                                                        <span class="theme-select__single-value">{{ selectedSatellite }}</span>
-                                                    </div>
-                                                    <select class="theme-select__input" [(ngModel)]="selectedSatellite" aria-autocomplete="list" aria-expanded="false" aria-haspopup="true" role="combobox" style="color: inherit; background: 0px center; opacity: 0; width: 100%; grid-area: 1 / 2; font: inherit; min-width: 2px; border: 0px; margin: 0px; outline: 0px; padding: 0px; position: absolute; top: 0; left: 0; height: 100%; cursor: pointer;">
-                                                        <option *ngFor="let satellite of satellites" [value]="satellite">{{ satellite }}</option>
-                                                    </select>
-                                                    <div class="theme-select__indicators css-1wy0on6">
-                                                        <span class="theme-select__indicator-separator css-1uei4ir-indicatorSeparator"></span>
-                                                        <div class="theme-select__indicator theme-select__dropdown-indicator css-1aepsjj-indicatorContainer" aria-hidden="true">
-                                                            <svg width="14" height="7" viewBox="0 0 14 7" xmlns="http://www.w3.org/2000/svg">
-                                                                <path d="M1 0.582031L6.83434 6.41637" stroke="#000000" stroke-linecap="round" id="chevron-down"></path>
-                                                                <path d="M12.668 0.582031L6.83363 6.41637" stroke="#000000" stroke-linecap="round" id="chevron-down"></path>
-                                                            </svg>
+                        <div id="theme-select" class="top">
+                            <div class="theme-select-highlights-wrapper">
+                                <div class="theme-label-select-wrapper">
+                                    <div class="theme-search">
+                                        <div class="theme-search-header">
+                                            <div class="theme-selection">
+                                                <div class="theme-select-dropdown css-b62m3t-container">
+                                                    <span id="react-select-2-live-region" class="css-7pg0cj-a11yText"></span>
+                                                    <span aria-live="polite" aria-atomic="false" aria-relevant="additions text" class="css-7pg0cj-a11yText"></span>
+                                                    <div class="theme-select__control css-12278lu-control">
+                                                        <div class="theme-select__value-container theme-select__value-container--has-value css-sg3nxe">
+                                                            <span class="theme-select__single-value">{{ selectedSatellite }}</span>
+                                                        </div>
+                                                        <select class="theme-select__input" [(ngModel)]="selectedSatellite" aria-autocomplete="list" aria-expanded="false" aria-haspopup="true" role="combobox" style="color: inherit; background: 0px center; opacity: 0; width: 100%; grid-area: 1 / 2; font: inherit; min-width: 2px; border: 0px; margin: 0px; outline: 0px; padding: 0px; position: absolute; top: 0; left: 0; height: 100%; cursor: pointer;">
+                                                            <option *ngFor="let satellite of satellites" [value]="satellite">{{ satellite }}</option>
+                                                        </select>
+                                                        <div class="theme-select__indicators css-1wy0on6">
+                                                            <span class="theme-select__indicator-separator css-1uei4ir-indicatorSeparator"></span>
+                                                            <div class="theme-select__indicator theme-select__dropdown-indicator css-1aepsjj-indicatorContainer" aria-hidden="true">
+                                                                <svg width="14" height="7" viewBox="0 0 14 7" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M1 0.582031L6.83434 6.41637" stroke="#000000" stroke-linecap="round" id="chevron-down"></path>
+                                                                    <path d="M12.668 0.582031L6.83363 6.41637" stroke="#000000" stroke-linecap="round" id="chevron-down"></path>
+                                                                </svg>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -277,17 +278,14 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                           <div class="collection-tooltip undefined closed" style="position: relative;">
-                                <div class="collection-tooltip-icon">
-                                    <i class="fa fa-info"></i>
+                                <div class="collection-tooltip undefined closed" style="position: relative;">
+                                    <div class="collection-tooltip-icon">
+                                        <i class="fa fa-info"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                     
-                    </div>
-
-                         <div class="observation-scenarios-wrapper">
+                        <div class="observation-scenarios-wrapper">
                             <div class="observation-scenarios-label">Acquisition mode:
                                 <div class="collection-tooltip undefined closed" style="position: relative;">
                                     <div class="collection-tooltip-icon">
@@ -336,7 +334,7 @@
                                         </div>
                                     </div>
                                 </div>
-                 <div class="collection-buttons-wrapper">
+                                <div class="collection-buttons-wrapper">
                                     <div class="single-collection-wrapper" *ngFor="let direction of orbitDirections">
                                         <a class="eob-btn collection-button secondary option-toggle" [ngClass]="{'selected': direction.isSelected}" (click)="toggleOrbitDirectionIndependent(direction)" [attr.title]="direction.text">
                                             {{ direction.text }}
@@ -355,9 +353,63 @@
                     </div>
                 </div>
             </div>
+            <!--^ Layer Selection Content -->
+         <div class="layer-selection" *ngIf="showLayerSelection">
+    <div class="layer-header">
+        <div class="layer-title">Layers:</div>
+    </div>
+    <div class="layer-container" [ngClass]="{'active': layer.title === selectedLayerTitle}" *ngFor="let layer of layers" (click)="selectLayer(layer.title)">
+        <div class="layer-header">
+            <div [ngClass]="{'preview': !layer.isCustom, 'preview-custom': layer.isCustom}">
+                <ng-container *ngIf="!layer.isCustom">
+                    <img class="icon" crossorigin="Anonymous" [src]="layer.previewUrl" alt="">
+                </ng-container>
+                <ng-container *ngIf="layer.isCustom">
+                    <i class="icon fa fa-paint-brush fa-lg"></i>
+                </ng-container>
+            </div>
+            <div class="title">
+                <span [ngClass]="{'active-title': layer.title === selectedLayerTitle}">{{ layer.title }}</span>
+                <small [ngClass]="{'active-description': layer.title === selectedLayerTitle}">{{ layer.description }}</small>
+            </div>
+            <div class="icons" *ngIf="layer.title === selectedLayerTitle">
+                <div title="Add to" class="plus">
+                    <i class="fas fa-plus"></i> Add to
+                </div>
+                <svg width="21" height="19" viewBox="0 0 21 19" fill="none" xmlns="http://www.w3.org/2000/svg" class="code" title="Show evalscript">
+                    <filter id="code">
+                        <feColorMatrix color-interpolation-filters="sRGB" type="matrix" values="0.71 0 0 0 0 0 0.75 0 0 0 0 0 0 0 0 0 0 0 1 0"></feColorMatrix>
+                    </filter>
+                    <path d="M6.90969 13.8L1.22969 11.192V9.816L6.90969 7.208V8.584L2.44569 10.504L6.90969 12.424V13.8ZM7.16556 16.36L11.4536 3.8H12.9736L8.68556 16.36H7.16556ZM12.9134 13.8L18.5934 11.192V9.816L12.9134 7.208V8.584L17.3774 10.504L12.9134 12.424V13.8Z" fill="white"></path>
+                </svg>
+                <svg width="17" height="15" viewBox="0 0 17 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="double-chevron-down" title="Show details">
+                    <filter id="double-chevron-down">
+                        <feColorMatrix color-interpolation-filters="sRGB" type="matrix" values="0.71 0 0 0 0 0 0.75 0 0 0 0 0 0 0 0 0 0 0 1 0"></feColorMatrix>
+                    </filter>
+                    <path d="M15.3739 1L8.46092 7.913L15.3739 1ZM1.54492 1L8.46092 7.913L1.54492 1Z" stroke="white" stroke-width="1.5" stroke-linejoin="round"></path>
+                    <path d="M15.3739 6.37793L8.46092 13.2909L15.3739 6.37793ZM1.54492 6.37793L8.46092 13.2909L1.54492 6.37793Z" stroke="white" stroke-width="1.5" stroke-linejoin="round"></path>
+                </svg>
+            </div>
         </div>
     </div>
+         </div>
+        <div class="visualization-actions" *ngIf="showLayerSelection">
+        <div class="action-bar">
+            <div class="action-wrapper" title="Show effects and advanced options">
+                <i class="fa fa-sliders"></i><div>Show effects and advanced options</div>
+            </div>
+            <div class="action-wrapper" title="Hide layer">
+                <i class="fa fa-eye-slash"></i><div>Hide layer</div>
+            </div>
+            <div class="action-wrapper ignore-react-onclickoutside" title="Share">
+                <i class="fas fa-share-alt"></i><div>Share</div>
+            </div>
+        </div>
+         </div>
 </div>
+</div>
+</div>
+
  <!--& search Tab Content -->
 <div id="search-tab" class="tabPanelContainer" *ngIf="activeTab === 'search'">
   <div class="active">
@@ -406,7 +458,7 @@
               <div class="date-input">
                 <div class="date-picker">
                   <div class="date-picker-input-wrapper">
-                    <i class="fas fa-chevron-left timespan-date-picker" title=""></i>
+                    <i class="fas fa-chevron-left timespan-date-picker" title="Previous day" (click)="changeDate(-1)"></i>
                     <input class="date-picker-input timespan-date-picker" placeholder="YYYY-MM-DD" [value]="timeRange.date">
                     <i class="fas fa-chevron-right timespan-date-picker" title=""></i>
                   </div>

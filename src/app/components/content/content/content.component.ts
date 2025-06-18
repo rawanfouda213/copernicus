@@ -43,6 +43,8 @@ activeTab: string = 'visualize';
 satellites = ['Sentinel-1', 'Sentinel-2', 'Landsat-8'];
   selectedSatellite: string = 'Sentinel-1'; 
 
+ selectedTabTitle: string = 'Single';
+  showLayerSelection: boolean = false;
 
 collections: Collection[] = [
     { label: 'SENTINEL-1', isToggleDisabled: false },
@@ -122,9 +124,59 @@ collections: Collection[] = [
 
     orbitDirections = [
     { text: 'Ascending', title: 'Ascending Orbit', isSelected: true },
-    { text: 'Descending', title: 'Descending Orbit', isSelected: false }
+    { text: 'Descending', title: 'Descending Orbit', isSelected: true }
   ];
-
+layers: { title: string, description: string, previewUrl: string, isCustom: boolean }[] = [
+    {
+      title: 'RGB ratio',
+      description: 'Orthorectified',
+      previewUrl: '/assets/images/DEFAULT-THEME-f1c110-8_RGB-RATIO.png',
+      isCustom: false
+    },
+    {
+      title: 'SAR urban',
+      description: 'Orthorectified',
+      previewUrl: '/assets/images/DEFAULT-THEME-f1c110-9_SAR-URBAN.png',
+      isCustom: false
+    },
+    {
+      title: 'Enhanced visualization',
+      description: 'Orthorectified',
+      previewUrl: '/assets/images/DEFAULT-THEME-f1c110-ENHANCED-VISUALIZATION-ORTHORECTIFIED.png',
+      isCustom: false
+    },
+    {
+      title: 'VH - decibel gamma0',
+      description: 'Orthorectified',
+      previewUrl: '/assets/images/DEFAULT-THEME-f1c110-SM-DV-VH-DECIBEL-GAMMA0-ORTHORECTIFIED.png',
+      isCustom: false
+    },
+    {
+      title: 'VH - linear gamma0',
+      description: 'Orthorectified',
+      previewUrl: '/assets/images/DEFAULT-THEME-f1c110-SM-DV-VH-LINEAR-GAMMA0-ORTHORECTIFIED.png',
+      isCustom: false
+    },
+    {
+      title: 'VV - decibel gamma0',
+      description: 'Orthorectified',
+      previewUrl: '/assets/images/DEFAULT-THEME-f1c110-SM-DV-VV-DECIBEL-GAMMA0-ORTHORECTIFIED.png',
+      isCustom: false
+    },
+    {
+      title: 'VV - linear gamma0',
+      description: 'Orthorectified',
+      previewUrl: '/assets/images/DEFAULT-THEME-f1c110-SM-DV-VV-LINEAR-GAMMA0-ORTHORECTIFIED.png',
+      isCustom: false
+    },
+    {
+      title: 'Custom',
+      description: 'Create custom visualisation',
+      previewUrl: '',
+      isCustom: true
+    }
+  ];
+  selectedLayerTitle: string = this.layers[0].title;
  selectedDate: Date | null = null; 
   setLatestDate() {
     this.selectedDate = new Date(); 
@@ -182,5 +234,22 @@ onDateSelect(event: any) {
  toggleOrbitDirectionIndependent(direction: any) {
     direction.isSelected = !direction.isSelected;
   }
-   
+ selectTab(tab: DateTab) {
+    this.dateTabs.forEach(t => {
+      t.class = t.class.replace(' active', '');
+    });
+    tab.class = tab.class + ' active';
+    this.selectedTabTitle = tab.title.replace(' date', '');
+
+    if (tab.title === 'Mosaic') {
+      this.selectedDate = new Date();
+      this.isThemePanelExpanded = false;
+      this.isCollectionPanelExpanded = false;
+      this.showLayerSelection = true;
+    } else if (tab.title === 'Single date') {
+    }
+  }
+  selectLayer(title: string): void {
+    this.selectedLayerTitle = title; 
+  }
 }
