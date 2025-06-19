@@ -1,1 +1,115 @@
-<div #mapViewNode class="map-view"></div>
+<div #mapViewNode class="map-view">
+
+    <div class="leaflet-bottom leaflet-right">
+        <div class="leaflet-control-zoom leaflet-bar leaflet-control">
+            <a class="leaflet-control-zoom-in" href="#" title="Zoom in" role="button" aria-label="Zoom in">+</a>
+            <a class="leaflet-control-zoom-out" href="#" title="Zoom out" role="button" aria-label="Zoom out">−</a>
+        </div>
+    </div>
+    <div class="leaflet-container">
+ <div class="leaflet-control-container">
+<div class="leaflet-top leaflet-right">
+    <div class="leaflet-control-layers leaflet-control" aria-haspopup="true">
+        <a class="leaflet-control-layers-toggle" href="#" title="Layers"></a>
+        <section class="leaflet-control-layers-list">
+            <div class="leaflet-control-layers-base">
+                <label>
+                    <div>
+                        <input type="radio" class="leaflet-control-layers-selector" name="leaflet-base-layers_294" checked="checked">
+                        <span> Sentinel-2 Mosaic</span>
+                    </div>
+                </label>
+                <label>
+                    <div>
+                        <input type="radio" class="leaflet-control-layers-selector" name="leaflet-base-layers_294">
+                        <span> OSM Background</span>
+                    </div>
+                </label>
+            </div>
+            <div class="leaflet-control-layers-separator">  
+            </div>
+            <div class="leaflet-control-layers-overlays">
+                <label>
+                    <div>
+                        <input type="checkbox" class="leaflet-control-layers-selector">
+                        <span> Country Borders</span>
+                    </div>
+                </label>
+                <label>
+                    <div>
+                        <input type="checkbox" class="leaflet-control-layers-selector" checked="">
+                        <span> Labels</span>
+                    </div>
+                </label>
+            </div>
+        </section>
+    </div>
+</div>
+    </div>
+        <div class="search-box-wrapper close   ">
+            <div class="location-search-box" id="location-search-box">
+                <div class="autocomplete close">
+                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16 icon-search" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path>
+                    </svg>
+                    <div class="rbt has-aux" tabindex="-1" style="outline: none; position: relative;">
+                        <div style="display: flex; flex: 1 1 0%; height: 100%; position: relative;">
+                            <input autocomplete="off" placeholder="Go to Place" type="text" aria-autocomplete="both" aria-expanded="false" aria-haspopup="listbox" role="combobox" class="rbt-input-main form-control rbt-input" value="">
+                            <input aria-hidden="true" class="rbt-input-hint" readonly="" tabindex="-1" value="" style="background-color: transparent; border-color: transparent; box-shadow: none; color: rgba(0, 0, 0, 0.54); left: 0px; pointer-events: none; position: absolute; top: 0px; width: 100%; border-style: none; border-width: 0px; font-size: 15px; font-weight: 400; height: 40px; line-height: normal; margin: 0px; padding: 1px 2px 1px 40px;">
+                        </div>
+                        <div class="rbt-aux">
+                            <div class="rbt-loader spinner-border spinner-border-sm" role="status">
+                                <span class="sr-only visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="controls-wrapper">
+        <div class="aoi-wrapper ">
+            <div class="aoiPanel panelButton floatItem" title="Create an area of interest">
+                <a class="drawGeometry  ">
+                    <i><svg height="21px" version="1.1" viewBox="0 0 16 16" width="21px" xmlns="http://www.w3.org/2000/svg"><defs id="defs4"></defs><g id="layer1" transform="translate(0,-1036.3622)"><path d="M 8,0.75 0.75,6.5 4,15.25 l 8,0 3.25,-8.75 z" id="path2985" fill="#fbfffe" transform="translate(0,1036.3622)"></path></g></svg></i>
+                </a>
+            </div>
+        </div>
+        <div class="loi-wrapper ">
+            <div class="loiPanel panelButton floatItem" title="Draw a line">
+                <div class="loiMenu">     
+                </div>
+                <a class="loiIcon" title="Draw a line">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24"><defs><path id="line-a" d="M9.16509725,19.4206892 L18.4206892,10.1650973 C18.1523681,9.66992914 18,9.10275831 18,8.5 C18,6.56700338 19.5670034,5 21.5,5 C23.4329966,5 25,6.56700338 25,8.5 C25,10.4329966 23.4329966,12 21.5,12 C20.8972417,12 20.3300709,11.8476319 19.8349027,11.5793108 L10.5793108,20.8349027 C10.8476319,21.3300709 11,21.8972417 11,22.5 C11,24.4329966 9.43299662,26 7.5,26 C5.56700338,26 4,24.4329966 4,22.5 C4,20.5670034 5.56700338,19 7.5,19 C8.10275831,19 8.66992914,19.1523681 9.16509725,19.4206892 Z M21.5,10 C22.3284271,10 23,9.32842712 23,8.5 C23,7.67157288 22.3284271,7 21.5,7 C20.6715729,7 20,7.67157288 20,8.5 C20,9.32842712 20.6715729,10 21.5,10 Z M7.5,24 C8.32842712,24 9,23.3284271 9,22.5 C9,21.6715729 8.32842712,21 7.5,21 C6.67157288,21 6,21.6715729 6,22.5 C6,23.3284271 6.67157288,24 7.5,24 Z"></path></defs><g fill="none" fill-rule="evenodd" transform="translate(-3 -3)"><mask id="line-b" fill="#fff"><use xlink:href="#line-a"></use></mask><use fill="#5B5B5B" fill-rule="nonzero" xlink:href="#line-a"></use><g fill="#5B5B5B" mask="url(#line-b)"><rect width="30" height="30"></rect></g></g></svg>
+                </a>
+            </div>
+        </div>
+        <div class="poi-wrapper ">
+            <div class="poiPanel panelButton floatItem" title="Area of interest">
+                <span title="Mark point of interest "> 
+                    <a class="drawGeometry  "><i class="fa fa-map-marker"></i></a>
+                </span>
+            </div>
+        </div>
+        <div class="measure-wrapper ">
+            <div class="measurePanel panelButton floatItem">
+                <a class="drawGeometry "><i><svg id="svg2" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; padding-bottom: 1px;"><g id="g10" transform="matrix(1.25,0,0,-1.25,-1.4533166,-19.969848)"><g id="g12" transform="matrix(0.01033919,0.00922242,-0.00852155,0.01118954,4.886061,-32.307974)"><path d="M 76.9766,85.3633 1164.25,76.9766 1166.01,378.859 78.7383,387.25 76.9766,85.3633 Z M 1229.38,11.0781 c -6.98,-6.89451 -16.6,-11.1445063 -27.2,-11.07419375 L 38.1523,8.83984 C 16.957,8.95703 -0.125,26.2422 0,47.4336 L 2.21094,426.066 c 0.11719,21.188 17.41016,38.282 38.59376,38.149 L 1204.84,455.383 c 21.19,-0.121 38.28,-17.403 38.15,-38.602 l -2.21,-378.6326 c -0.06,-10.5976 -4.42,-20.1679 -11.4,-27.0703" fill="#fbfffe" id="path14" style="fill-opacity: 1; fill-rule: nonzero; stroke: none;"></path><path d="m 194.066,261.43 c -6.98,-6.907 -16.605,-11.153 -27.199,-11.086 -21.195,0.117 -38.277,17.402 -38.152,38.605 l 0.793,135.742 c 0.113,21.18 17.41,38.274 38.59,38.145 21.199,-0.125 38.285,-17.402 38.156,-38.606 l -0.789,-135.742 c -0.063,-10.586 -4.414,-20.164 -11.399,-27.058" fill="#fbfffe" id="path16" style="fill-opacity: 1; fill-rule: nonzero; stroke: none;"></path><path d="m 347.305,260.414 c -6.989,-6.906 -16.61,-11.144 -27.207,-11.086 -21.192,0.129 -38.274,17.402 -38.145,38.606 l 0.793,135.742 c 0.117,21.183 17.402,38.273 38.606,38.152 21.191,-0.125 38.269,-17.406 38.144,-38.601 l -0.797,-135.743 c -0.058,-10.597 -4.414,-20.168 -11.394,-27.07" fill="#fbfffe" id="path18" style="fill-opacity: 1; fill-rule: nonzero; stroke: none;"></path><path d="m 499.484,159.406 c -6.98,-6.902 -16.605,-11.14 -27.207,-11.082 -21.187,0.125 -38.269,17.403 -38.144,38.602 l 0.797,235.742 c 0.117,21.187 17.402,38.277 38.605,38.156 21.192,-0.129 38.27,-17.41 38.145,-38.605 l -0.797,-235.742 c -0.059,-10.594 -4.414,-20.164 -11.399,-27.071" fill="#fbfffe" id="path20" style="fill-opacity: 1; fill-rule: nonzero; stroke: none;"></path><path d="m 653.781,258.391 c -6.98,-6.903 -16.601,-11.141 -27.195,-11.082 -21.195,0.125 -38.277,17.402 -38.148,38.601 l 0.789,135.742 c 0.117,21.184 17.406,38.278 38.589,38.149 21.2,-0.121 38.282,-17.406 38.153,-38.598 L 665.18,285.461 c -0.059,-10.594 -4.414,-20.164 -11.399,-27.07" fill="#fbfffe" id="path22" style="fill-opacity: 1; fill-rule: nonzero; stroke: none;"></path><path d="m 806.398,257.668 c -6.98,-6.902 -16.597,-11.152 -27.207,-11.082 -21.187,0.125 -38.269,17.402 -38.14,38.602 l 0.797,135.742 c 0.117,21.187 17.406,38.277 38.605,38.148 21.192,-0.121 38.27,-17.402 38.145,-38.598 l -0.801,-135.75 c -0.059,-10.585 -4.414,-20.167 -11.399,-27.062" fill="#fbfffe" id="path24" style="fill-opacity: 1; fill-rule: nonzero; stroke: none;"></path><path d="m 1113.07,254.328 c -6.98,-6.894 -16.61,-11.14 -27.21,-11.082 -21.19,0.125 -38.27,17.41 -38.14,38.602 l 0.8,135.754 c 0.12,21.179 17.4,38.269 38.6,38.148 21.19,-0.129 38.27,-17.406 38.15,-38.609 l -0.8,-135.743 c -0.06,-10.593 -4.42,-20.164 -11.4,-27.07" fill="#fbfffe" id="path26" style="fill-opacity: 1; fill-rule: nonzero; stroke: none;"></path><path d="M 960.707,154.145 C 953.723,147.25 944.094,143 933.508,143.07 c -21.199,0.118 -38.281,17.403 -38.153,38.602 l 0.79,235.742 c 0.117,21.184 17.414,38.274 38.593,38.145 21.192,-0.121 38.282,-17.403 38.157,-38.602 l -0.793,-235.742 c -0.055,-10.586 -4.414,-20.168 -11.395,-27.07" fill="#fbfffe" id="path28" style="fill-opacity: 1; fill-rule: nonzero; stroke: none;"></path></g></g></svg></i></a></div></div><div class="img-download-btn-wrapper " title="Download image "><div class=" "><svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" alt="download-icon"><path id="Subtraction_1" data-name="Subtraction 1" fill="#fbfffe" d="M22.13,28.11H9.53A1.52,1.52,0,0,1,8,26.59H8V11A1.52,1.52,0,0,1,9.52,9.45h21A1.52,1.52,0,0,1,32,11V23.12a7,7,0,0,0-9.87,5ZM16,14.83a1.12,1.12,0,0,1,.87.41l6,7.16,3-3a1.14,1.14,0,0,1,.8-.33,1.1,1.1,0,0,1,.77.3l3,2.73V11H9.52V21.74l5.6-6.51a1.15,1.15,0,0,1,.87-.4ZM26.1,17.07A2.11,2.11,0,0,1,24,15h0a2.11,2.11,0,0,1,2.1-2.1h0A2.11,2.11,0,0,1,28.2,15h0a2.11,2.11,0,0,1-2.1,2.1Z"></path><path id="Subtraction_2" data-name="Subtraction 2" fill="#fbfffe" d="M29,35.45a6,6,0,1,1,6-6A6,6,0,0,1,29,35.45Zm-3.41-3.56v1h7.07v-1Zm.48-3.84,3.05,3.09,3.06-3.09H30v-3.2a.4.4,0,0,0-.4-.4H28.4a.4.4,0,0,0-.4.4v3.2Z"></path></svg>
+                </div>
+            </div>
+            <div class="timelapse-wrapper">
+                <div class="timelapsePanelButton panelButton floatItem ">
+    <div class="badge-wrapper">
+        <a class="drawGeometry disabled "><i class="fa fa-film"></i></a>
+    </div>
+</div>
+</div>
+<div class="terrain-viewer-button  " title="Visualise terrain in 3D"><svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 491.83 473.92" class="icon" fill="currentColor"><path d="M240.26,234.69q0-40.89,0-81.77c0-6.24.31-6.56,6.24-6.56,27.46,0,54.93-.36,82.39.24,20.41.44,39.38,6.78,55.86,19.76,14.83,11.68,24.41,27.22,28.37,46.25,4.06,19.51,3.52,38.87-3.7,57.58C400.2,294.06,383,309,360.25,317.61a103.61,103.61,0,0,1-36.35,6.44c-26,.14-52,.07-78.06.06-5.11,0-5.57-.51-5.57-6Q240.24,276.4,240.26,234.69Zm47.33.32c0,14.86,0,29.72,0,44.59,0,4.84.67,5.51,5.28,5.54,8.93.06,17.88.34,26.8-.08,10.18-.49,20.09-2.58,28.79-8.69,18.8-13.21,23.31-38.53,16.33-60.23-5.87-18.22-19.35-27.52-36.89-29.74-11.28-1.44-22.8-.87-34.21-1.07-5.62-.1-6.1.48-6.11,6.32Q287.55,213.34,287.59,235Z"></path><path d="M150.27,184.87c-2.56-.25-4.18-.53-5.8-.53-18.27,0-36.54,0-54.8,0-5.9,0-6.26-.39-6.27-6.56,0-8.81.07-17.62,0-26.44,0-3.47,1.23-5,4.64-5q56.77.09,113.55,0c3.67,0,4.82,1.69,4.75,5.28-.13,7.16.2,14.34-.17,21.48a13.08,13.08,0,0,1-2.83,7.25C194,191.2,184.44,201.8,175,212.52c-4.15,4.71-4.15,4.94,1.9,6.76,10.87,3.27,20.35,8.65,27.65,18,15.58,19.9,12.63,50.42-3.64,68.12a63.83,63.83,0,0,1-36.81,20c-29.3,5.1-57.57,1.8-84.46-12.11-3.47-1.79-4.34-3.65-2.57-7.37q6.71-14,13-28.29c1.47-3.36,3-3.69,6-1.86a79.9,79.9,0,0,0,48.4,11.75,39.68,39.68,0,0,0,14.21-4.4c5.82-2.92,8.47-8.54,8.13-15.32S163.38,256,157.29,254a71.91,71.91,0,0,0-15.76-3.25A136.34,136.34,0,0,0,125,250.6c-3.4.08-4.68-1.46-4.63-4.95.13-7.3-.2-14.61.17-21.89a13.23,13.23,0,0,1,2.82-7.26c7.9-9.4,16.1-18.52,24.16-27.77C148.33,187.79,149,186.68,150.27,184.87Z"></path></svg>
+</div>
+<div class="histogram-wrapper">
+    <div class="histogram-button-wrapper">
+    <div class="histogram-button disabled ">
+        <i class="fas fa-chart-bar"></i>
+    </div>
+</div>
+</div>
+</div>
+    </div>
+</div>

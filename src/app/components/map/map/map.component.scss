@@ -1,4 +1,427 @@
 .map-view {
+  width: 100vw;
   height: 100vh;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  font-size: 16px;
+}
+
+.leaflet-container {
+  font: 12px / 1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.search-box-wrapper {
+  position: absolute;
+  right: 110px;
+  top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  flex-direction: column;
+  box-sizing: border-box;
+  font-size: 15px;
+  border: 0;
+  border-radius: 0;
+  box-shadow: 0 0 6px #0003;
+  color: #fff;
+  z-index: 500;
+}
+
+.search-box-wrapper .location-search-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+}
+
+.search-box-wrapper .location-search-box .autocomplete .icon-search {
+  color: #0a4393;
+  width: 22px;
+  height: 20px;
+  padding: 10px;
+  position: absolute;
+  z-index: 1;
+}
+
+.fa-search::before {
+  content: "";
+}
+
+.search-box-wrapper .location-search-box .autocomplete .icon-search {
+  color: #0a4393;
+}
+
+html input,
+body input,
+#root input,
+#app input,
+#mapViewNode input {
+  border-radius: 0;
+}
+
+.search-box-wrapper .location-search-box .autocomplete input {
   width: 100%;
+  height: 40px;
+  padding-left: 40px;
+  flex-direction: column;
+  box-sizing: border-box;
+  font-size: 15px;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* تعديل الـ leaflet-control-container ليكون جنب الـ search-box-wrapper */
+.leaflet-control-container {
+  position: absolute;
+  right: 10px; /* قريب من الـ search-box-wrapper */
+  top: 10px; /* نفس ارتفاع الـ search-box-wrapper */
+  z-index: 500; /* ليكون فوق الخريطة */
+}
+
+.leaflet-top.leaflet-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.leaflet-control-layers {
+  background: #fff; /* نفس لون الـ controls-wrapper */
+  box-shadow: 0 0 6px #0003; /* نفس الـ shadow */
+  margin-bottom: 10px; /* مسافة بين الـ layers والأزرار */
+  border-radius: 0; /* زي الـ controls-wrapper */
+}
+
+.leaflet-control-layers-toggle {
+display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: #fff url('/assets/images/layersWidget.svg') no-repeat center; /* استخدام الأيقونة */
+  background-size: 24px; /* حجم مناسب للأيقونة */
+  color: #0a4393;
+  border: 1px solid #fff;
+  cursor: pointer;
+  text-indent: -9999px; /* إخفاء النص إذا كان موجود */
+  
+}
+
+.leaflet-control-layers-toggle:hover {
+background: #f5f5f5 url('/assets/images/layersWidget.svg') no-repeat center; /* نفس التأثير بتاع الـ hover */
+  background-size: 24px;
+}
+
+.leaflet-control-layers-list {
+  display: none; /* يظهر فقط لما يضغطوا على الـ toggle */
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background: #fff;
+  box-shadow: 0 0 6px #0003;
+  padding: 5px;
+  width: 200px; /* عرض مناسب */
+}
+
+.leaflet-control-layers-toggle:focus + .leaflet-control-layers-list,
+.leaflet-control-layers-toggle:hover + .leaflet-control-layers-list {
+  display: block; /* يظهر القايمة لما يضغطوا أو يحطوا الكرسور */
+}
+
+.leaflet-control-layers-base label,
+.leaflet-control-layers-overlays label {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  color: #041223; /* نفس لون النصوص في controls-wrapper */
+}
+
+.leaflet-control-layers-selector {
+  margin-right: 5px;
+}
+
+.leaflet-control-layers-separator {
+  border-top: 1px solid #ccc;
+  margin: 5px 0;
+}
+
+/* تصميم الأزرار الأخرى (controls-wrapper) كما هي مع تعديلات طفيفة */
+.panelButton.aoiPanel {
+  top: 60px;
+}
+
+.poi-wrapper > .poiPanel,
+.aoi-wrapper > .aoiPanel,
+.loi-wrapper > .loiPanel,
+.measure-wrapper > .measurePanel,
+.timelapse-wrapper > .timelapsePanelButton {
+  z-index: 400;
+  cursor: pointer;
+}
+
+.floatItem {
+  box-shadow: 0 0 6px #0003 !important;
+  background: #f5f5f5;
+  padding: 0;
+  color: #041223;
+  margin: 0;
+  height: 40px;
+  border: none;
+  overflow: visible;
+}
+
+.panelButton {
+  position: absolute !important;
+  right: 10px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.panelButton .drawGeometry {
+  background-color: #fff;
+  height: 40px;
+}
+
+.panelButton a {
+  color: #fff;
+  background: none;
+  display: inline-block;
+  width: 40px;
+  text-align: center;
+}
+
+.panelButton i {
+  font-size: 21px;
+  line-height: 40px;
+  width: 40px;
+  cursor: pointer;
+  color: #0a4393;
+}
+
+.floatItem i svg path {
+  fill: #0a4393;
+}
+
+.panelButton.loiPanel .loiIcon {
+  background-color: #fff;
+  height: 40px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.panelButton.loiPanel .loiIcon svg g {
+  fill: #0a4393;
+}
+
+.panelButton.loiPanel {
+  top: 110px;
+  z-index: 400;
+}
+
+.panelButton.poiPanel {
+  top: 160px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.panelButton.measurePanel {
+  top: 210px;
+}
+
+.img-download-btn-wrapper {
+  z-index: 400;
+  cursor: pointer;
+  position: absolute;
+  top: 260px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  font-size: 12px;
+  background: #fff;
+  color: #fff;
+  box-shadow: 0 0 6px #0003;
+  text-align: center;
+}
+
+.img-download-btn-wrapper svg path {
+  fill: #0a4393;
+}
+
+.panelButton.timelapsePanelButton {
+  top: 310px;
+}
+
+.terrain-viewer-button {
+  z-index: 400;
+  cursor: pointer;
+  position: absolute;
+  top: 360px;
+  box-shadow: 0 2px 4px #00000080;
+  background: #fff;
+  padding: 0;
+  color: #fff;
+  margin: 0;
+  height: 40px;
+  width: 40px;
+  border: none;
+  overflow: visible;
+  right: 10px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.terrain-viewer-button .icon {
+  color: #0a4393;
+  cursor: pointer;
+  width: 38px;
+}
+
+.histogram-wrapper .histogram-button-wrapper {
+  z-index: 400;
+  cursor: pointer;
+  position: absolute;
+  top: 410px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  font-size: 12px;
+  background: #fff;
+  color: #fff;
+  box-shadow: 0 0 6px #0003;
+  text-align: center;
+}
+
+.histogram-wrapper .histogram-button-wrapper .histogram-button.disabled {
+  opacity: 0.5;
+}
+
+.histogram-wrapper .histogram-button-wrapper .histogram-button {
+  display: flex;
+  flex-direction: column;
+  height: inherit;
+  width: inherit;
+}
+
+.histogram-wrapper .histogram-button-wrapper .histogram-button i {
+  align-self: flex-end;
+  font-size: 21px;
+  line-height: 40px;
+  width: 40px;
+  cursor: pointer;
+  color: #0a4393;
+}
+
+.leaflet-control-container .leaflet-bottom.leaflet-right {
+  height: 90px;
+}
+
+.leaflet-bottom {
+  bottom: 0;
+}
+
+.leaflet-right {
+  right: 0;
+}
+
+.leaflet-control-container .leaflet-bottom.leaflet-right .leaflet-control-zoom {
+  border: none;
+}
+
+.leaflet-touch .leaflet-control-layers, .leaflet-touch .leaflet-bar {
+    border: 2px solid rgba(0, 0, 0, .2);
+    background-clip: padding-box;
+}
+.leaflet-touch .leaflet-control-attribution, .leaflet-touch .leaflet-control-layers, .leaflet-touch .leaflet-bar {
+    box-shadow: none;
+}
+.leaflet-right .leaflet-control {
+    margin-right: 10px;
+}
+.leaflet-bottom .leaflet-control {
+    margin-bottom: 10px;
+}
+.leaflet-right .leaflet-control {
+    float: right;
+}
+.leaflet-bar {
+    box-shadow: 0 1px 5px #000000a6;
+    border-radius: 4px;
+}
+.leaflet-popup-pane, .leaflet-control {
+    cursor: auto;
+}
+.leaflet-control {
+    float: left;
+    clear: both;
+}
+.leaflet-control {
+    position: relative;
+    z-index: 800;
+    pointer-events: visiblePainted;
+    pointer-events: auto;
+}
+.leaflet-control-container .leaflet-bottom.leaflet-right .leaflet-control-zoom .leaflet-control-zoom-in, #mapViewNode .leaflet-control-container .leaflet-bottom.leaflet-right .leaflet-control-zoom .leaflet-control-zoom-out {
+    background-color: #fff;
+    color: #0a4393;
+    box-shadow: 0 0 6px #0003;
+    border-radius: 0;
+}
+#mapViewNode .leaflet-control-container .leaflet-bottom.leaflet-right .leaflet-control-zoom .leaflet-control-zoom-in {
+    border-bottom: 2px solid #fff;
+}
+#mapViewNode .leaflet-control-container .leaflet-bottom.leaflet-right .leaflet-control-zoom a {
+    padding-right: 2px;
+    line-height: 27px;
+}
+.leaflet-touch .leaflet-bar a:first-child {
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+}
+.leaflet-touch .leaflet-bar a {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+}
+.leaflet-bar a:first-child {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+.leaflet-touch .leaflet-control-zoom-in, .leaflet-touch .leaflet-control-zoom-out {
+    font-size: 22px;
+}
+.leaflet-bar a, .leaflet-control-layers-toggle {
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    display: block;
+}
+.leaflet-bar a, .leaflet-bar a:hover {
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
+    width: 26px;
+    height: 26px;
+    line-height: 26px;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+color: #0a4393;
+
+}
+.leaflet-container a {
+    color: #0078a8;
+}
+.leaflet-container a {
+    -webkit-tap-highlight-color: rgba(51, 181, 229, .4);
+}
+.leaflet-control-zoom-in, .leaflet-control-zoom-out {
+    font: 700 18px Lucida Console, Monaco, monospace;
+    text-indent: 1px;
+}
+.leaflet-right .leaflet-control {
+    margin-right: 50px;
 }
