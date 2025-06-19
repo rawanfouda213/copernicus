@@ -1450,3 +1450,65 @@ html input, body input, #root input, #app input, #map input {
 .fa.fa-sliders::before {
     content: "";
 }
+.filter-search-by-months .months {
+    display: grid
+;
+    grid-template-columns: auto auto auto auto auto auto;
+    gap: 6px;
+    margin: 7px 0 0;
+    justify-content: space-between;
+    border-top: 1px solid #dbdfe3;
+    padding-top: 7px;
+}
+.custom-checkbox-container {
+    position: relative;
+}
+.custom-checkbox-container .custom-checkbox-label.label-left {
+    flex-direction: row;
+}
+.custom-checkbox-container .custom-checkbox-label {
+    float: left;
+    clear: both;
+    cursor: pointer;
+    display: flex
+;
+    align-items: center;
+    font-size: .9rem;
+}
+.custom-checkbox-container .custom-checkbox-label .custom-checkbox-inner-wrapper {
+    position: relative;
+    width: 18px;
+    height: 18px;
+}
+custom-checkbox-container .custom-checkbox-label .custom-checkbox-text {
+    font-weight: 400;
+    margin-left: 5px;
+}
+.custom-checkbox-container .custom-checkbox-label .custom-checkbox-inner-wrapper {
+    position: relative;
+    width: 18px;
+    height: 18px;
+}
+html input, body input, #root input, #app input, #map input {
+    border-radius: 0;
+}
+
+.custom-checkbox-container .custom-checkbox-label .custom-checkbox-inner-wrapper .custom-checkbox[type=checkbox]:checked {
+    background-color: #0a4393;
+}
+.custom-checkbox-container .custom-checkbox-label .custom-checkbox-inner-wrapper .custom-checkbox[type=checkbox] {
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    -moz-appearance: none;
+    appearance: none;
+}
+.custom-checkbox-container .custom-checkbox-label .custom-checkbox-inner-wrapper .check-mark {
+    fill: none;
+    stroke: #fff;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}

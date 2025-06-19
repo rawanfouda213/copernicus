@@ -10,7 +10,7 @@ interface Collection {
 }
 interface TimeRange {
   label: string;
-  date: string;
+  date: Date;
   hours: string;
   minutes: string;
 }
@@ -19,7 +19,10 @@ interface DateTab {
   class: string;
   path: string;
 }
-
+interface Month {
+  name: string;
+  checked: boolean;
+}
 interface CollectionButton {
   text: string;
   title: string;
@@ -45,7 +48,7 @@ satellites = ['Sentinel-1', 'Sentinel-2', 'Landsat-8'];
 
  selectedTabTitle: string = 'Single';
   showLayerSelection: boolean = false;
-
+isFilterByMonths: boolean = false;
 collections: Collection[] = [
     { label: 'SENTINEL-1', isToggleDisabled: false },
     { label: 'SENTINEL-2', isToggleDisabled: false },
@@ -59,9 +62,9 @@ collections: Collection[] = [
     { label: 'CLMS Land Cover and Land Use Mapping', isToggleDisabled: false },
     { label: 'CLMS Bio-geophysical Parameters', isToggleDisabled: false }
   ];
-  timeRanges: TimeRange[] = [
-    { label: 'From', date: '2025-05-17', hours: '00', minutes: '00' },
-    { label: 'Until', date: '2025-06-17', hours: '23', minutes: '59' }
+timeRanges: TimeRange[] = [
+    { label: 'From', date: new Date('2025-05-17'), hours: '00', minutes: '00' },
+    { label: 'Until', date: new Date('2025-06-17'), hours: '23', minutes: '59' }
   ];
    dateTabs: DateTab[] = [
     {
@@ -176,6 +179,22 @@ layers: { title: string, description: string, previewUrl: string, isCustom: bool
       isCustom: true
     }
   ];
+
+  months: Month[] = [
+    { name: 'Jan', checked: true },
+    { name: 'Feb', checked: true },
+    { name: 'Mar', checked: true },
+    { name: 'Apr', checked: true },
+    { name: 'May', checked: true },
+    { name: 'Jun', checked: true },
+    { name: 'Jul', checked: true },
+    { name: 'Aug', checked: true },
+    { name: 'Sep', checked: true },
+    { name: 'Oct', checked: true },
+    { name: 'Nov', checked: true },
+    { name: 'Dec', checked: true }
+  ];
+
   selectedLayerTitle: string = this.layers[0].title;
  selectedDate: Date | null = null; 
   setLatestDate() {
@@ -251,5 +270,38 @@ onDateSelect(event: any) {
   }
   selectLayer(title: string): void {
     this.selectedLayerTitle = title; 
+  }
+  changeHours(index: number, increment: number): void {
+    let hours = parseInt(this.timeRanges[index].hours) + increment;
+    if (hours > 23) hours = 0;
+    if (hours < 0) hours = 23;
+    this.timeRanges[index].hours = hours.toString().padStart(2, '0'); 
+  }
+  changeMinutes(index: number, increment: number): void {
+    let minutes = parseInt(this.timeRanges[index].minutes) + increment;
+    if (minutes > 59) minutes = 0;
+    if (minutes < 0) minutes = 59;
+    this.timeRanges[index].minutes = minutes.toString().padStart(2, '0'); 
+  }
+  changeSearchDate(index: number, days: number): void {
+    const newDate = new Date(this.timeRanges[index].date);
+    newDate.setDate(newDate.getDate() + days);
+    this.timeRanges[index].date = newDate;
+  }
+  onSearchDateChange(index: number, event: any): void {
+    this.timeRanges[index].date = event.value;
+  }
+toggleFilterByMonths(): void {
+    this.isFilterByMonths = !this.isFilterByMonths;
+  }
+
+  toggleMonth(index: number): void {
+    this.months[index].checked = !this.months[index].checked;
+  }
+
+  search(): void {
+    const selectedMonths = this.months.filter(month => month.checked).map(month => month.name);
+    console.log('Selected Months:', selectedMonths);
+    console.log('Time Range:', this.timeRanges);
   }
 }

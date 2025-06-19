@@ -450,67 +450,93 @@
           </div>
         </div>
         <div class="clear"></div>
-        <div class="select-time-range">
-          <div class="time-range-advanced-title">Time range:</div>
-          <div class="timespan-picker">
-            <div class="date-time-input" *ngFor="let timeRange of timeRanges">
-              <div class="date-time-input-label">{{ timeRange.label }}</div>
-              <div class="date-input">
+<div class="select-time-range">
+    <div class="time-range-advanced-title">Time range:</div>
+    <div class="timespan-picker">
+        <div class="date-time-input" *ngFor="let timeRange of timeRanges; let i = index">
+            <div class="date-time-input-label">{{ timeRange.label }}</div>
+            <div class="date-input">
                 <div class="date-picker">
-                  <div class="date-picker-input-wrapper">
-                    <i class="fas fa-chevron-left timespan-date-picker" title="Previous day" (click)="changeDate(-1)"></i>
-                    <input class="date-picker-input timespan-date-picker" placeholder="YYYY-MM-DD" [value]="timeRange.date">
-                    <i class="fas fa-chevron-right timespan-date-picker" title=""></i>
-                  </div>
-                </div>
-              </div>
-              <div class="time-input">
-                <div class="time-input-hours-minutes">
-                  <div class="numeric-input">
-                    <label>hh</label>
-                    <input class="input-value" type="text" min="0" max="23" [value]="timeRange.hours">
-                    <div class="spinner">
-                      <div class="up">
-                        <i class="fas fa-chevron-up"></i>
-                      </div>
-                      <div class="down">
-                        <i class="fas fa-chevron-down"></i>
-                      </div>
+                    <div class="date-picker-input-wrapper">
+                        <i class="fas fa-chevron-left timespan-date-picker" title="Previous day" (click)="changeSearchDate(i, -1)"></i>
+                        <input
+                            class="date-picker-input timespan-date-picker"
+                            placeholder="YYYY-MM-DD"
+                            [value]="timeRange.date | date:'yyyy-MM-dd'"
+                            matInput
+                            [matDatepicker]="picker"
+                            readonly
+                            (click)="picker.open()"
+                            (dateChange)="onSearchDateChange(i, $event)"
+                        >
+                        <i class="fas fa-chevron-right timespan-date-picker" title="Next day" (click)="changeSearchDate(i, 1)"></i>
+                        <mat-datepicker #picker></mat-datepicker>
                     </div>
-                  </div>
+                </div>
+            </div>
+            <div class="time-input">
+                <div class="time-input-hours-minutes">
+                    <div class="numeric-input">
+                        <label>hh</label>
+                        <input class="input-value" type="text" min="0" max="23" [value]="timeRange.hours" readonly>
+                        <div class="spinner">
+                            <div class="up" (click)="changeHours(i, 1)">
+                                <i class="fas fa-chevron-up"></i>
+                            </div>
+                            <div class="down" (click)="changeHours(i, -1)">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="time-input-hours-minutes no-full-width">:</div>
                 <div class="time-input-hours-minutes no-right-margin">
-                  <div class="numeric-input">
-                    <label>mm</label>
-                    <input class="input-value" type="text" min="0" max="59" [value]="timeRange.minutes">
-                    <div class="spinner">
-                      <div class="up">
-                        <i class="fas fa-chevron-up"></i>
-                      </div>
-                      <div class="down">
-                        <i class="fas fa-chevron-down"></i>
-                      </div>
+                    <div class="numeric-input">
+                        <label>mm</label>
+                        <input class="input-value" type="text" min="0" max="59" [value]="timeRange.minutes" readonly>
+                        <div class="spinner">
+                            <div class="up" (click)="changeMinutes(i, 1)">
+                                <i class="fas fa-chevron-up"></i>
+                            </div>
+                            <div class="down" (click)="changeMinutes(i, -1)">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
                     </div>
-                  </div>
                 </div>
-              </div>
             </div>
-          </div>
-          <div class="timespan-calendar-holder"></div>
-        <div class="calendar-holder"></div>
-        <div class="filter-search-by-months">
-          <div class="custom-checkbox-container">
-            <label class="custom-checkbox-label label-left">
-              <div class="custom-checkbox-inner-wrapper" title="">
-                <input class="custom-checkbox" type="checkbox">
-              </div>
-              <span class="custom-checkbox-text">Filter by months</span>
-            </label>
-          </div>
         </div>
-        <a class="eob-btn full-size" title="Search">Search</a>
-      </div>
+    </div>
+    <div class="timespan-calendar-holder"></div>
+    <div class="calendar-holder"></div>
+<div class="filter-search-by-months">
+    <div class="custom-checkbox-container">
+        <label class="custom-checkbox-label label-left">
+            <div class="custom-checkbox-inner-wrapper" title="">
+                <input class="custom-checkbox" type="checkbox" [(ngModel)]="isFilterByMonths" (change)="toggleFilterByMonths()">
+                <svg width="11" height="13" viewBox="0 0 11 13" xmlns="http://www.w3.org/2000/svg" class="check-mark">
+                    <path d="M1 7L4 11.5L10 1" stroke-width="2" stroke-linejoin="round"></path>
+                </svg>
+            </div>
+            <span class="custom-checkbox-text">Filter by months</span>
+        </label>
+    </div>
+    <div class="months" *ngIf="isFilterByMonths">
+        <div class="custom-checkbox-container" *ngFor="let month of months; let i = index">
+            <label class="custom-checkbox-label label-left">
+                <div class="custom-checkbox-inner-wrapper" title="">
+                    <input class="custom-checkbox" type="checkbox" [(ngModel)]="month.checked" (change)="toggleMonth(i)">
+                    <svg width="11" height="13" viewBox="0 0 11 13" xmlns="http://www.w3.org/2000/svg" class="check-mark">
+                        <path d="M1 7L4 11.5L10 1" stroke-width="2" stroke-linejoin="round"></path>
+                    </svg>
+                </div>
+                <span class="custom-checkbox-text">{{ month.name }}</span>
+            </label>
+        </div>
+    </div>
+</div>
+    <a class="eob-btn full-size" title="Search">Search</a>
+</div>
         </div>
        
     </div>
