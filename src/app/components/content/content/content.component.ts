@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { MatDatepickerInputEvent, MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
+
 interface Collection {
   label: string;
   isToggleDisabled: boolean;
@@ -28,28 +29,33 @@ interface CollectionButton {
   title: string;
   isSelected: boolean;
 }
+
 @Component({
   selector: 'app-content',
-  imports: [CommonModule,FormsModule,MatDatepickerModule, MatInputModule, MatNativeDateModule],
+  imports: [CommonModule, FormsModule, MatDatepickerModule, MatInputModule, MatNativeDateModule],
   templateUrl: './content.component.html',
   styleUrl: './content.component.scss'
 })
 export class ContentComponent {
-activeTab: string = 'visualize'; 
+  activeTab: string = 'visualize'; 
   searchQuery: string = '';
   isDatePanelExpanded: boolean = true;
-    isThemePanelExpanded: boolean = true;
-      isCollectionPanelExpanded: boolean = true;
+  isThemePanelExpanded: boolean = true;
+  isCollectionPanelExpanded: boolean = true;
 
-        themes = ['Default', 'Dark', 'Light'];
+  themes = ['Default', 'Dark', 'Light'];
   selectedTheme: string = 'Default';
-satellites = ['Sentinel-1', 'Sentinel-2', 'Landsat-8'];
+  satellites = ['Sentinel-1', 'Sentinel-2', 'Landsat-8'];
   selectedSatellite: string = 'Sentinel-1'; 
 
- selectedTabTitle: string = 'Single';
+  selectedTabTitle: string = 'Single';
   showLayerSelection: boolean = false;
-isFilterByMonths: boolean = false;
-collections: Collection[] = [
+  isFilterByMonths: boolean = false;
+
+  orders = ['Layer default', 'Most recent', 'Least recent'];
+  selectedOrder: string = 'Layer default';
+
+  collections: Collection[] = [
     { label: 'SENTINEL-1', isToggleDisabled: false },
     { label: 'SENTINEL-2', isToggleDisabled: false },
     { label: 'SENTINEL-3', isToggleDisabled: false },
@@ -62,11 +68,11 @@ collections: Collection[] = [
     { label: 'CLMS Land Cover and Land Use Mapping', isToggleDisabled: false },
     { label: 'CLMS Bio-geophysical Parameters', isToggleDisabled: false }
   ];
-timeRanges: TimeRange[] = [
-    { label: 'From', date: new Date('2025-05-17'), hours: '00', minutes: '00' },
-    { label: 'Until', date: new Date('2025-06-17'), hours: '23', minutes: '59' }
+  timeRanges: TimeRange[] = [
+    { label: 'From', date: new Date('2025-05-18'), hours: '00', minutes: '00' },
+    { label: 'Until', date: new Date('2025-06-18'), hours: '23', minutes: '59' }
   ];
-   dateTabs: DateTab[] = [
+  dateTabs: DateTab[] = [
     {
       title: 'Single date',
       class: 'single-mode-svg active',
@@ -125,11 +131,11 @@ timeRanges: TimeRange[] = [
     }
   ];
 
-    orbitDirections = [
+  orbitDirections = [
     { text: 'Ascending', title: 'Ascending Orbit', isSelected: true },
     { text: 'Descending', title: 'Descending Orbit', isSelected: true }
   ];
-layers: { title: string, description: string, previewUrl: string, isCustom: boolean }[] = [
+  layers: { title: string, description: string, previewUrl: string, isCustom: boolean }[] = [
     {
       title: 'RGB ratio',
       description: 'Orthorectified',
@@ -196,17 +202,16 @@ layers: { title: string, description: string, previewUrl: string, isCustom: bool
   ];
 
   selectedLayerTitle: string = this.layers[0].title;
- selectedDate: Date | null = null; 
+  selectedDate: Date | null = null; 
   setLatestDate() {
     this.selectedDate = new Date(); 
   }
 
-onDateSelect(event: any) {
-  if (event instanceof Date) {
-    this.selectedDate = event;
+  onDateSelect(event: any) {
+    if (event instanceof Date) {
+      this.selectedDate = event;
+    }
   }
-}
-
 
   onDateChange(event: MatDatepickerInputEvent<any>) {
     this.selectedDate = event.value;
@@ -233,16 +238,15 @@ onDateSelect(event: any) {
   toggleThemePanel() {
     this.isThemePanelExpanded = !this.isThemePanelExpanded;
   }
-    toggleCollectionPanel() {
+  toggleCollectionPanel() {
     this.isCollectionPanelExpanded = !this.isCollectionPanelExpanded;
   }
   getCollapsedTitle(): string {
     const collection = this.selectedSatellite;
-   const selectedMode = this.acquisitionModes.find(m => m.isSelected)?.text.split(' - ')[0] || '';
+    const selectedMode = this.acquisitionModes.find(m => m.isSelected)?.text.split(' - ')[0] || '';
     const selectedPols = this.polarizations.filter(p => p.isSelected).map(p => p.text);
     const polarization = selectedPols.length > 0 ? selectedPols.join('+') : '';
     const selectedDirections = this.orbitDirections.filter(d => d.isSelected).map(d => d.text);
-    // const direction = selectedDirections.length > 0 ? selectedDirections.join('+') : '';
     const parts = [selectedMode, polarization].filter(Boolean);
     return parts.length > 0 ? `${collection} ${parts.join(' ')}` : collection;
   }
@@ -250,10 +254,10 @@ onDateSelect(event: any) {
     array.forEach(i => i.isSelected = false);
     item.isSelected = true;
   }
- toggleOrbitDirectionIndependent(direction: any) {
+  toggleOrbitDirectionIndependent(direction: any) {
     direction.isSelected = !direction.isSelected;
   }
- selectTab(tab: DateTab) {
+  selectTab(tab: DateTab) {
     this.dateTabs.forEach(t => {
       t.class = t.class.replace(' active', '');
     });
@@ -265,7 +269,14 @@ onDateSelect(event: any) {
       this.isThemePanelExpanded = false;
       this.isCollectionPanelExpanded = false;
       this.showLayerSelection = true;
+    } else if (tab.title === 'Time range') {
+      this.isThemePanelExpanded = false;
+      this.isCollectionPanelExpanded = false;
+      this.timeRanges[0].date = new Date('2025-05-18');
+      this.timeRanges[1].date = new Date('2025-06-18');
     } else if (tab.title === 'Single date') {
+      this.isThemePanelExpanded = true;
+      this.isCollectionPanelExpanded = true;
     }
   }
   selectLayer(title: string): void {
@@ -291,7 +302,7 @@ onDateSelect(event: any) {
   onSearchDateChange(index: number, event: any): void {
     this.timeRanges[index].date = event.value;
   }
-toggleFilterByMonths(): void {
+  toggleFilterByMonths(): void {
     this.isFilterByMonths = !this.isFilterByMonths;
   }
 

@@ -1512,3 +1512,203 @@ html input, body input, #root input, #app input, #map input {
     top: 50%;
     transform: translate(-50%, -50%);
 }
+
+.visualization-time-select .collapsible-panel .content {
+    margin-left: 4px;
+}
+.collapsible-panel .content {
+    position: relative;
+    border-top: none;
+}
+.collapsible-panel .content>* {
+    margin-left: 12px;
+    margin-right: 12px;
+}
+.visualization-time-select .secondary {
+    color: #0a4393;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: underline;
+    padding: 3px 5px;
+    cursor: pointer;
+}
+.visualization-time-select .secondary {
+    color: #0a4393;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: underline;
+    padding: 3px 5px;
+    cursor: pointer;
+}
+.visualization-time-select .collapsible-panel .content .timespan-picker {
+    margin-top: 0;
+}
+.collapsible-panel .content>* {
+    margin-left: 12px;
+    margin-right: 12px;
+}
+.timespan-picker {
+    position: relative;
+    font-size: 14px;
+    text-transform: none;
+}
+.visualization-panel .date-selection .visualization-time-select .timespan-picker .timespan-calendar-holder {
+    margin-top: 10px;
+}
+.timespan-picker .effect-container {
+    margin: 18px 0;
+    display: flex
+;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.timespan-picker .effect-container .effect-dropdown-select-dropdown {
+    margin-right: 12px;
+    width: 250px;
+}
+.css-b62m3t-container {
+    position: relative;
+    box-sizing: border-box;
+}
+.order{
+    margin-right: 150px;
+}
+.visualization-time-select .collapsible-panel .content .timespan-picker {
+    margin-top: 0;
+}
+.collapsible-panel .content>* {
+    margin-left: 12px;
+    margin-right: 12px;
+}
+.timespan-picker {
+    position: relative;
+    font-size: 14px;
+    text-transform: none;
+}
+.visualization-time-select .collapsible-panel .expanded.expanded {
+    padding-bottom: 0;
+}
+.visualization-time-select .collapsible-panel .title, .visualization-time-select .collapsible-panel .expanded {
+    align-items: baseline !important;
+}
+.timespan-picker .date-time-input {
+    color: #041223;
+    display: flex
+;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.timespan-picker .date-time-input-label {
+    display: flex
+;
+    flex-basis: 100%;
+    font-size: 14px;
+    height: 25px;
+    min-width: 40px;
+    margin-bottom: 8px;
+    text-align: left;
+    font-weight: 700;
+}
+.timespan-picker .date-time-input .date-input {
+    display: flex
+;
+    align-items: flex-end;
+    position: relative;
+    height: 30px;
+}
+.date-picker {
+    color: #041223;
+    display: inline-flex
+;
+    align-items: baseline;
+    background-color: #fff;
+    box-shadow: 0 0 6px #0003;
+}
+.date-picker .date-picker-input-wrapper {
+    position: relative;
+    display: flex
+;
+    align-items: center;
+}
+.timespan-picker .date-time-input .date-picker-input-wrapper i.fas.fa-chevron-right {
+    color: #0a4393;
+    background-color: #fff;
+    line-height: 35px;
+    width: 35px;
+}
+.date-picker .date-picker-input-wrapper i.fas.fa-chevron-right {
+    color: #0a4393;
+    box-shadow: -1px 0 1px #00000026;
+    line-height: 35px;
+    width: 35px;
+    cursor: pointer;
+}
+.date-picker .date-picker-input-wrapper i.fas {
+    display: flex
+;
+    justify-content: center;
+}
+html input, body input, #root input, #app input, #map input {
+    border-radius: 0;
+}
+.date-picker .date-picker-input-wrapper .date-picker-input {
+    color: #0a4393;
+    font-weight: 700;
+    border: none;
+    width: 120px;
+    margin-right: 2px;
+    margin-left: 2px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    font-size: 14px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.timespan-picker .date-time-input .time-input {
+    display: flex
+;
+    flex-direction: row;
+    align-items: center;
+    height: 35px;
+}
+.timespan-picker .date-time-input .time-input .time-input-hours-minutes {
+    max-width: 55px;
+    width: 55px;
+}
+.numeric-input {
+    display: flex
+;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #6f707b;
+    height: 25px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.numeric-input label {
+    color: #041223;
+}
+html input, body input, #root input, #app input, #map input {
+    border-radius: 0;
+}
+.numeric-input input {
+    text-align: left;
+    background: transparent;
+    color: #041223;
+    border: none;
+    max-width: 25px;
+    padding: 5px;
+}
+.fa-chevron-down::before {
+    content: "";
+}
+.numeric-input .spinner .up i, .numeric-input .spinner .down i {
+    color: #041223;
+    margin-right: 0;
+}
+.numeric-input .spinner .up, .numeric-input .spinner .down {
+    margin: -3px 0;
+}
